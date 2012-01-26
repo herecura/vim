@@ -1,5 +1,5 @@
 pkgbase = vim
-	pkgver = 7.3.415
+	pkgver = 7.3.418
 	pkgrel = 1
 	url = http://www.vim.org
 	arch = i686
@@ -8,8 +8,9 @@ pkgbase = vim
 	makedepends = gpm
 	makedepends = perl
 	makedepends = python2
-	makedepends = ruby
+	makedepends = python
 	makedepends = lua
+	makedepends = ruby
 	makedepends = libxt
 	makedepends = desktop-file-utils
 	makedepends = gtk2
@@ -30,7 +31,7 @@ pkgbase = vim
 	sha256sums = 1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209
 	sha256sums = 5f2d65e755424f688b990b20bce6bd84718b9d5f7944a5332b5dee72f09493f7
 	sha256sums = bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55
-	sha256sums = fde8d843eba2a9cfbbed5ca28b1b09ec934d814e79725e9b13db5ff544b4be4c
+	sha256sums = c12ae1d0a4fbd1af0851b086f802381004ecaa48082f1c0f05718c38113b6804
 	sha256sums = d790f1504b7a5930ca64fb230c440617ed938b158f12b7b5da9e125f4f5800e8
 
 pkgname = vim-tiny
@@ -38,16 +39,15 @@ pkgname = vim-tiny
 	provides = vim
 	conflicts = vi
 	conflicts = vim
-	replaces = vim-slim
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.3.415-1
+	depends = vim-rt=7.3.418-1
 	depends = gpm
-	depends = perl
-	depends = python2
-	depends = ruby
-	depends = lua
+	optdepends = perl: vim perl binding
+	optdepends = python2: vim python2 binding
+	optdepends = python: vim python3 binding
+	optdepends = lua: vim lua binding
 	provides = vim
 	conflicts = vi
 	conflicts = vim
