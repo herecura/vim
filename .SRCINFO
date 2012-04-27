@@ -1,6 +1,6 @@
 pkgbase = vim
 	pkgver = 7.3.509
-	pkgrel = 1
+	pkgrel = 2
 	url = http://www.vim.org
 	arch = i686
 	arch = x86_64
@@ -42,7 +42,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.3.509-1
+	depends = vim-rt=7.3.509-2
 	depends = gpm
 	optdepends = perl: vim perl binding
 	optdepends = python2: vim python2 binding
