@@ -1,5 +1,5 @@
 pkgbase = vim
-	pkgver = 7.3.718
+	pkgver = 7.3.725
 	pkgrel = 1
 	url = http://www.vim.org
 	arch = i686
@@ -28,12 +28,14 @@ pkgbase = vim
 	source = license.txt
 	source = vim-qt-src.patch
 	source = qt-icons.tar.gz
+	source = fix-if_ruby.patch
 	sha256sums = 868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056
 	sha256sums = 1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209
 	sha256sums = 5f2d65e755424f688b990b20bce6bd84718b9d5f7944a5332b5dee72f09493f7
 	sha256sums = bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55
 	sha256sums = 174fd83074e48323e06152493419fe4c264f968ab967906005a0dc2a227516bb
 	sha256sums = 059ab867e564f1aad98d7a6bf69021b8c7b6d947fa5a43e1e3f2322712f32d36
+	sha256sums = a3d1a7f3f025b0602ae1a9dd378f3e04710310e12e786d7578c216e7a9f7e0bf
 
 pkgname = vim-tiny
 	pkgdesc = Vi Improved, tiny edition
@@ -43,7 +45,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.3.718-1
+	depends = vim-rt=7.3.725-1
 	depends = gpm
 	optdepends = perl: vim perl binding
 	optdepends = python2: vim python2 binding
