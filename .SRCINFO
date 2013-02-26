@@ -1,5 +1,5 @@
 pkgbase = vim
-	pkgver = 7.3.834
+	pkgver = 7.3.839
 	pkgrel = 1
 	url = http://www.vim.org
 	arch = i686
@@ -32,7 +32,7 @@ pkgbase = vim
 	sha256sums = 1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209
 	sha256sums = 5f2d65e755424f688b990b20bce6bd84718b9d5f7944a5332b5dee72f09493f7
 	sha256sums = bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55
-	sha256sums = fa2da77dba87ce0931cf897f1ba8a8b79d2a90cd32045740269651ead0bb8bd8
+	sha256sums = 97fc906ba132d0f5de7ca7ad276316a66db994525441c08c8009088e635d908b
 	sha256sums = d6ae8e414581a8c497db87226a092380a50cf7f842476e735cffa6d4ff692fd0
 
 pkgname = vim-tiny
@@ -43,7 +43,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.3.834-1
+	depends = vim-rt=7.3.839-1
 	depends = gpm
 	optdepends = perl: vim perl binding
 	optdepends = python2: vim python2 binding
