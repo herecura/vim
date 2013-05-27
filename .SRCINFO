@@ -25,6 +25,7 @@ pkgbase = vim
 	source = qt-icons.tar.gz
 	source = qvim.desktop
 	source = qvim.png
+	source = if_perl.xs.fix.patch
 	sha256sums = 868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056
 	sha256sums = 1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209
 	sha256sums = 5f2d65e755424f688b990b20bce6bd84718b9d5f7944a5332b5dee72f09493f7
@@ -33,6 +34,7 @@ pkgbase = vim
 	sha256sums = f9121acfdf0a1af93148d06236e382682450bdcf85f75d4f72685b5711d0e36e
 	sha256sums = e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd
 	sha256sums = c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280
+	sha256sums = 737824c7566469dcba0a1fd283efb578b141ca0bbd2363e4311e227860de9014
 
 pkgname = vim-tiny
 	pkgdesc = Vi Improved, tiny edition
