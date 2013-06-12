@@ -17,6 +17,7 @@ pkgbase = vim
 	makedepends = sed
 	makedepends = mercurial
 	makedepends = qt4
+	makedepends = ruby
 	source = vimrc
 	source = peaksea.vim
 	source = gvim.desktop
