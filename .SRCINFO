@@ -45,6 +45,7 @@ pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
 	depends = vim-rt=7.3.1242-1
 	depends = gpm
+	depends = libxt
 	optdepends = perl: vim perl binding
 	optdepends = python2: vim python2 binding
 	optdepends = python: vim python3 binding
