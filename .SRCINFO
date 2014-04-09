@@ -1,6 +1,6 @@
 pkgbase = vim
 	pkgver = 7.4.253
-	pkgrel = 3
+	pkgrel = 4
 	url = http://www.vim.org
 	arch = i686
 	arch = x86_64
@@ -45,7 +45,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.4.253-3
+	depends = vim-rt=7.4.253-4
 	depends = gpm
 	depends = libxt
 	optdepends = perl: vim perl binding
