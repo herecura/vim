@@ -1,5 +1,5 @@
 pkgbase = vim
-	pkgver = 7.4.749
+	pkgver = 7.4.752
 	pkgrel = 1
 	url = http://www.vim.org
 	arch = i686
@@ -18,7 +18,7 @@ pkgbase = vim
 	makedepends = mercurial
 	makedepends = qt4
 	makedepends = ruby
-	source = hg+https://code.google.com/p/vim/#tag=v7-4-749
+	source = hg+https://code.google.com/p/vim/#tag=v7-4-752
 	source = vimrc
 	source = peaksea.vim
 	source = gvim.desktop
@@ -32,8 +32,8 @@ pkgbase = vim
 	sha256sums = 1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209
 	sha256sums = 5f2d65e755424f688b990b20bce6bd84718b9d5f7944a5332b5dee72f09493f7
 	sha256sums = bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55
-	sha256sums = 8cfb84f5b06bd27e7e31bf698ae38826e705369f618bb15322d147214d30f543
-	sha256sums = e08adea5da6db4677b6b77dd5e6d9fce37395d9b44c7a171ea10909d307b2334
+	sha256sums = 5c056f076bbf1cca132ea546640560e99b8a8d43e9ffc5e50dfdde8b8e5ba085
+	sha256sums = a66c64bcbb0c939832db4239029df63789dd9eca0724d45b2693be74ee78915a
 	sha256sums = e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd
 	sha256sums = c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280
 
@@ -45,7 +45,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.4.749-1
+	depends = vim-rt=7.4.752-1
 	depends = gpm
 	depends = libxt
 	optdepends = perl: vim perl binding
