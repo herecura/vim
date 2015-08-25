@@ -8,22 +8,22 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=827
+_patchlevel=831
 if [ "$_patchlevel" = "0" ]; then
 	pkgver=${_basever}
 else
 	pkgver=${_basever}.${_patchlevel}
 fi
-__hgrev=v${pkgver//./-}
+_gitcommit=3f188935ec4db5117c4a64cc3f71219175624745
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'mercurial' 'qt4' 'ruby')
+makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt4' 'ruby')
 options=()
 source=(
-	"hg+https://code.google.com/p/vim/#tag=$__hgrev"
+	"$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
 	'vimrc'
 	'peaksea.vim'
 	'gvim.desktop'
@@ -43,10 +43,6 @@ sha256sums=('SKIP'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
             'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
 
-__hgroot='https://code.google.com/p/vim/'
-__hgrepo='vim'
-__hgbranch='default'
-
 prepare() {
 	# remove old build dirs if exist
 	[ -d vim-build ] && rm -rf vim-build
@@ -56,7 +52,7 @@ prepare() {
 
 	cp -a ${pkgbase} vim-build
 	(
-		cd vim-build && rm -rf ./.hg*
+		cd vim-build && rm -rf ./.git*
 	)
 
 	# define the place for the global (g)vimrc file (set to /etc/vimrc)
