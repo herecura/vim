@@ -1,0 +1,31 @@
+From 583fd2c2d658e84352f8bef167ff349acd1d1d07 Mon Sep 17 00:00:00 2001
+From: BlackEagle <ike.devolder@gmail.com>
+Date: Tue, 25 Aug 2015 21:21:05 +0200
+Subject: [PATCH] only use crypt related vars within FEAT_CRYPT
+
+Signed-off-by: BlackEagle <ike.devolder@gmail.com>
+---
+ src/option.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/option.c b/src/option.c
+index b5e53ef..219ca89 100644
+--- a/src/option.c
++++ b/src/option.c
+@@ -3653,9 +3653,12 @@ set_options_default(opt_flags)
+     for (i = 0; !istermoption(&options[i]); i++)
+ 	if (!(options[i].flags & P_NODEFAULT)
+ 		&& (opt_flags == 0
++#ifdef FEAT_CRYPT
+ 		    || (options[i].var != (char_u *)&p_enc
+ 			&& options[i].var != (char_u *)&p_cm
+-			&& options[i].var != (char_u *)&p_key)))
++			&& options[i].var != (char_u *)&p_key)
++#endif
++                    ))
+ 	    set_option_default(i, opt_flags, p_cp);
+ 
+ #ifdef FEAT_WINDOWS
+-- 
+2.5.0
+

@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=831
+_patchlevel=837
 if [ "$_patchlevel" = "0" ]; then
 	pkgver=${_basever}
 else
 	pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=3f188935ec4db5117c4a64cc3f71219175624745
+_gitcommit=80ce282107849ef1a0e9b8a3be26c59c211b0957
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -32,7 +32,9 @@ source=(
 	'qt-icons.tar.gz'
 	'qvim.desktop'
 	'qvim.png'
+    '0001-only-use-crypt-related-vars-within-FEAT_CRYPT.patch'
 )
+  
 sha256sums=('SKIP'
             '868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056'
             '1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209'
@@ -41,7 +43,8 @@ sha256sums=('SKIP'
             'c23076861aa55c7279dea0f3a892731d00262232ead50ae7c89787599a24d0c6'
             'a66c64bcbb0c939832db4239029df63789dd9eca0724d45b2693be74ee78915a'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
-            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
+            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280'
+            '91146730749920f20b8512cb921abc79a5ad9d7141a17c4c4654a73e10a49578')
 
 prepare() {
 	# remove old build dirs if exist
@@ -53,6 +56,7 @@ prepare() {
 	cp -a ${pkgbase} vim-build
 	(
 		cd vim-build && rm -rf ./.git*
+        patch -p1 -i "$srcdir/0001-only-use-crypt-related-vars-within-FEAT_CRYPT.patch"
 	)
 
 	# define the place for the global (g)vimrc file (set to /etc/vimrc)
