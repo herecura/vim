@@ -1,0 +1,16 @@
+diff --git a/src/move.c b/src/move.c
+index 449382f..e4ba73c 100644
+--- a/src/move.c
++++ b/src/move.c
+@@ -1769,7 +1769,11 @@ scroll_cursor_top(min_scroll, always)
+ 	    i = 1;
+ 	else
+ #endif
++#if defined(FEAT_DIFF) || defined(PROTO)
+ 	    i = plines_nofill(top);
++#else
++	    i = plines(top);
++#endif
+ 	used += i;
+ 	if (extra + i <= off && bot < curbuf->b_ml.ml_line_count)
+ 	{
