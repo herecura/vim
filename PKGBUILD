@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=856
+_patchlevel=861
 if [ "$_patchlevel" = "0" ]; then
 	pkgver=${_basever}
 else
 	pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=a09a2c5857ab854f0870573b5160da1964c905a2
+_gitcommit=3cbe0c01ad71875bd662edb629f9e792a734f292
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -33,6 +33,7 @@ source=(
 	'qvim.desktop'
 	'qvim.png'
     'tindy-no-diff.patch'
+    'tiny_build.diff'
 )
   
 sha256sums=('SKIP'
@@ -44,7 +45,8 @@ sha256sums=('SKIP'
             'a66c64bcbb0c939832db4239029df63789dd9eca0724d45b2693be74ee78915a'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
             'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280'
-            '04b8bea71e1909155974585112504786ee684891da93a85c8c2b1c45a6db6dc6')
+            '04b8bea71e1909155974585112504786ee684891da93a85c8c2b1c45a6db6dc6'
+            '3d48c3e28ba7227d6244df586bc27029070b20c1f77845bd7e77925d134db931')
 
 prepare() {
 	# remove old build dirs if exist
@@ -57,6 +59,7 @@ prepare() {
 	(
 		cd vim-build && rm -rf ./.git*
         patch -Np1 -i "$srcdir/tindy-no-diff.patch"
+        patch -Np1 -i "$srcdir/tiny_build.diff"
 	)
 
 	# define the place for the global (g)vimrc file (set to /etc/vimrc)
