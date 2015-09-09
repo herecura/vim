@@ -1,5 +1,5 @@
 pkgbase = vim
-	pkgver = 7.4.861
+	pkgver = 7.4.862
 	pkgrel = 1
 	url = http://www.vim.org
 	arch = i686
@@ -18,7 +18,7 @@ pkgbase = vim
 	makedepends = git
 	makedepends = qt4
 	makedepends = ruby
-	source = vim::git://github.com/vim/vim#commit=3cbe0c01ad71875bd662edb629f9e792a734f292
+	source = vim::git://github.com/vim/vim#commit=5325b9bbae8a717510ef7248f3ce8b50281bd33f
 	source = vimrc
 	source = peaksea.vim
 	source = gvim.desktop
@@ -49,7 +49,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.4.861-1
+	depends = vim-rt=7.4.862-1
 	depends = gpm
 	depends = libxt
 	optdepends = perl: vim perl binding
