@@ -1,5 +1,5 @@
 pkgbase = vim
-	pkgver = 7.4.903
+	pkgver = 7.4.909
 	pkgrel = 1
 	url = http://www.vim.org
 	arch = i686
@@ -18,10 +18,9 @@ pkgbase = vim
 	makedepends = git
 	makedepends = qt4
 	makedepends = ruby
-	source = vim::git://github.com/vim/vim#commit=7314efd87d8c4095229bdc2867a553c36c064918
+	source = vim::git://github.com/vim/vim#commit=de59ba33aa3b94f2757dbf3451682d762c15ebcf
 	source = vimrc
 	source = peaksea.vim
-	source = gvim.desktop
 	source = license.txt
 	source = vim-qt-src.patch
 	source = qt-icons.tar.gz
@@ -30,7 +29,6 @@ pkgbase = vim
 	sha256sums = SKIP
 	sha256sums = 868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056
 	sha256sums = 1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209
-	sha256sums = 5f2d65e755424f688b990b20bce6bd84718b9d5f7944a5332b5dee72f09493f7
 	sha256sums = bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55
 	sha256sums = c23076861aa55c7279dea0f3a892731d00262232ead50ae7c89787599a24d0c6
 	sha256sums = a66c64bcbb0c939832db4239029df63789dd9eca0724d45b2693be74ee78915a
@@ -45,7 +43,7 @@ pkgname = vim-tiny
 
 pkgname = vim-cli
 	pkgdesc = Vi Improved, cli
-	depends = vim-rt=7.4.903-1
+	depends = vim-rt=7.4.909-1
 	depends = gpm
 	depends = libxt
 	optdepends = perl: vim perl binding
