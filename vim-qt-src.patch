@@ -314,7 +314,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  # All GUI files
 -ALL_GUI_SRC  = gui.c gui_gtk.c gui_gtk_f.c gui_motif.c gui_xmdlg.c gui_xmebw.c gui_athena.c gui_gtk_x11.c gui_x11.c gui_at_sb.c gui_at_fs.c pty.c
 +ALL_GUI_SRC  = gui.c gui_gtk.c gui_gtk_f.c gui_motif.c gui_xmdlg.c gui_xmebw.c gui_athena.c gui_gtk_x11.c gui_x11.c gui_at_sb.c gui_at_fs.c pty.c gui_qt_cpp qt/qvimshell.cpp qt/mainwindow.cpp qt/vimgui.cpp qt/fontdialog.cpp qt/colortable.cpp
- ALL_GUI_PRO  = gui.pro gui_gtk.pro gui_motif.pro gui_xmdlg.pro gui_athena.pro gui_gtk_x11.pro gui_x11.pro gui_w16.pro gui_w32.pro gui_photon.pro
+ ALL_GUI_PRO  = gui.pro gui_gtk.pro gui_motif.pro gui_xmdlg.pro gui_athena.pro gui_gtk_x11.pro gui_x11.pro gui_w32.pro gui_photon.pro
  
  # }}}
 @@ -1377,7 +1410,7 @@
@@ -16303,9 +16303,9 @@ diff -urN vim-src/src/feature.h vim-qt-src/src/feature.h
   */
 -#if (defined(FEAT_NORMAL) || defined(FEAT_GUI_GTK) || defined(FEAT_ARABIC)) \
 +#if (defined(FEAT_NORMAL) || defined(FEAT_GUI_GTK) || defined(FEAT_GUI_QT) || defined(FEAT_ARABIC)) \
- 	&& !defined(FEAT_MBYTE) && !defined(WIN16) \
- 	&& VIM_SIZEOF_INT >= 4 && !defined(EBCDIC)
+	&& !defined(FEAT_MBYTE) && VIM_SIZEOF_INT >= 4 && !defined(EBCDIC)
  # define FEAT_MBYTE
+ #endif
 @@ -800,7 +804,8 @@
  	|| defined(FEAT_GUI_GTK) \
  	|| defined(FEAT_GUI_PHOTON) \
