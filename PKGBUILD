@@ -8,21 +8,21 @@
 # --with-gui=gtk3 ?
 
 pkgbase=vim
-pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
+pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1434
+_patchlevel=1436
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=b6ff81188d27fae774d9ad2dfb498f596d697d4b
+_gitcommit=e98991b8cfaf29016d14b8ec437d3dedfc0a5eb7
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt4' 'ruby')
+makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt4' 'ruby' 'gtk3')
 options=()
 source=(
     "$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
@@ -48,7 +48,8 @@ prepare() {
     # remove old build dirs if exist
     [ -d vim-build ] && rm -rf vim-build
     [ -d vim-build-tn ] && rm -rf vim-build-tn
-    [ -d gvim-build-gtk ] && rm -rf gvim-build-gtk
+    [ -d gvim-build-gtk2 ] && rm -rf gvim-build-gtk2
+    [ -d gvim-build-gtk3 ] && rm -rf gvim-build-gtk3
     [ -d gvim-build-qt ] && rm -rf gvim-build-qt
 
     cp -a ${pkgbase} vim-build
@@ -63,7 +64,8 @@ prepare() {
         vim-build/src/feature.h
 
     cp -a vim-build vim-build-tn
-    cp -a vim-build gvim-build-gtk
+    cp -a vim-build gvim-build-gtk2
+    cp -a vim-build gvim-build-gtk3
     cp -a vim-build gvim-build-qt
 
     cd ${srcdir}/vim-build-tn
@@ -72,7 +74,10 @@ prepare() {
     cd ${srcdir}/vim-build
     (cd src && autoconf)
 
-    cd ${srcdir}/gvim-build-gtk
+    cd ${srcdir}/gvim-build-gtk2
+    (cd src && autoconf)
+
+    cd ${srcdir}/gvim-build-gtk3
     (cd src && autoconf)
 
     cd ${srcdir}/gvim-build-qt
@@ -104,12 +109,24 @@ build() {
         #--disable-rubyinterp --enable-luainterp=dynamic
     make
 
-    msg2 'Building vim-gvim-gtk'
-    cd ${srcdir}/gvim-build-gtk
+    msg2 'Building vim-gvim-gtk2'
+    cd ${srcdir}/gvim-build-gtk2
     ./configure --prefix=/usr --localstatedir=/var/lib/vim \
         --mandir=/usr/share/man --with-compiledby=BlackEagle \
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --enable-gui=gtk2 --enable-multibyte --enable-cscope \
+        --enable-netbeans  --enable-perlinterp=dynamic \
+        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
+        --enable-rubyinterp=dynamic --enable-luainterp=dynamic
+        #--disable-rubyinterp --enable-luainterp=dynamic
+    make
+
+    msg2 'Building vim-gvim-gtk3'
+    cd ${srcdir}/gvim-build-gtk3
+    ./configure --prefix=/usr --localstatedir=/var/lib/vim \
+        --mandir=/usr/share/man --with-compiledby=BlackEagle \
+        --with-features=huge --enable-gpm --enable-acl --with-x=yes \
+        --enable-gui=gtk3 --enable-multibyte --enable-cscope \
         --enable-netbeans  --enable-perlinterp=dynamic \
         --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
@@ -175,8 +192,8 @@ package_vim-cli() {
         ${pkgdir}/usr/share/licenses/vim-cli/license.txt
 }
 
-package_vim-gvim-gtk() {
-    pkgdesc='Vi Improved, gtk gui'
+package_vim-gvim-gtk2() {
+    pkgdesc='Vi Improved, gtk2 gui'
     depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk2')
     provides=('gvim')
     install=gvim.install
@@ -187,7 +204,7 @@ package_vim-gvim-gtk() {
     install -dm755 "${pkgdir}/usr/share/icons/locolor/16x16/apps"
     install -dm755 "${pkgdir}/usr/share/applications"
 
-    cd ${srcdir}/gvim-build-gtk
+    cd ${srcdir}/gvim-build-gtk2
     make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
 
     # move vim to gvim
@@ -215,9 +232,54 @@ package_vim-gvim-gtk() {
     rm ${pkgdir}/usr/share/applications/vim.desktop
 
     # license
-    install -dm755 ${pkgdir}/usr/share/licenses/vim-gvim-gtk
+    install -dm755 ${pkgdir}/usr/share/licenses/vim-gvim-gtk2
     install -Dm644 ${srcdir}/license.txt \
-        ${pkgdir}/usr/share/licenses/vim-gvim-gtk/license.txt
+        ${pkgdir}/usr/share/licenses/vim-gvim-gtk2/license.txt
+}
+
+package_vim-gvim-gtk3() {
+    pkgdesc='Vi Improved, gtk3 gui'
+    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk3')
+    provides=('gvim')
+    install=gvim.install
+
+    # allow install of icons and desktopfiles
+    install -dm755 "${pkgdir}/usr/share/icons/hicolor/48x48/apps"
+    install -dm755 "${pkgdir}/usr/share/icons/locolor/32x32/apps"
+    install -dm755 "${pkgdir}/usr/share/icons/locolor/16x16/apps"
+    install -dm755 "${pkgdir}/usr/share/applications"
+
+    cd ${srcdir}/gvim-build-gtk3
+    make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
+
+    # move vim to gvim
+    rm -f ${pkgdir}/usr/bin/gvim
+    mv ${pkgdir}/usr/bin/{vim,gvim}
+    # remove files provided by vim-cli
+    rm -f ${pkgdir}/usr/bin/{vimtutor,xxd,rview,rvim,view,vimdiff,ex}
+    rm -f ${pkgdir}/usr/share/man/*{,/*}/{vim*,vimtutor*,xxd*,rview*,rvim*,view*,vimdiff*,ex*}
+    # recreate gvim symlinks
+    (
+    cd ${pkgdir}/usr/bin
+    for link in eview evim gview gvimdiff rgview rgvim; do
+        rm -f ${link}
+        ln -s gvim ${link}
+    done
+    )
+
+    # Runtime provided by runtime package
+    rm -r ${pkgdir}/usr/share/vim
+
+    # Move the man pages for common packaging
+    mv ${pkgdir}/usr/share/man ${srcdir}/gvim-man-install
+
+    # remove vim desktop file
+    rm ${pkgdir}/usr/share/applications/vim.desktop
+
+    # license
+    install -dm755 ${pkgdir}/usr/share/licenses/vim-gvim-gtk3
+    install -Dm644 ${srcdir}/license.txt \
+        ${pkgdir}/usr/share/licenses/vim-gvim-gtk3/license.txt
 }
 
 package_vim-gvim-qt() {
