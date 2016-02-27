@@ -5,16 +5,18 @@
 # Contributor: tobias [ tobias at archlinux org ]
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
+# --with-gui=gtk3 ?
+
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1425
+_patchlevel=1429
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=6e722e2f948bc51fcb92d98d6f2a089dac01e2bd
+_gitcommit=d804fdf4c25435284333258856bc265f1ff10b09
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
