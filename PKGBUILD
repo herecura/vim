@@ -10,13 +10,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1436
+_patchlevel=1437
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=e98991b8cfaf29016d14b8ec437d3dedfc0a5eb7
+_gitcommit=136f29a91dbafce424e31a4af133155f997e8f78
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -196,6 +196,7 @@ package_vim-gvim-gtk2() {
     pkgdesc='Vi Improved, gtk2 gui'
     depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk2')
     provides=('gvim')
+    replaces=('vim-gvim-gtk')
     install=gvim.install
 
     # allow install of icons and desktopfiles
@@ -241,6 +242,7 @@ package_vim-gvim-gtk3() {
     pkgdesc='Vi Improved, gtk3 gui'
     depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk3')
     provides=('gvim')
+    replaces=('vim-gvim-gtk')
     install=gvim.install
 
     # allow install of icons and desktopfiles
