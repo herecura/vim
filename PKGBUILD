@@ -10,13 +10,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1456
+_patchlevel=1457
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=29e1951e14907b62797554ad0cc85cbbe75a1be4
+_gitcommit=d42119fff228434fe57e88d501c744de0a9fb1b1
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -149,6 +149,7 @@ build() {
 
 package_vim-tiny() {
     pkgdesc='Vi Improved, tiny edition'
+    depends=('acl')
     conflicts=('vi' 'vim')
     provides=('vim')
 
@@ -157,6 +158,9 @@ package_vim-tiny() {
 
     # Runtime not needed
     rm -r ${pkgdir}/usr/share/vim
+
+    # vi symlink
+    ln -sf /usr/bin/vim ${pkgdir}/usr/bin/vi
 
     # license
     install -dm755 ${pkgdir}/usr/share/licenses/vim-tiny
@@ -185,6 +189,9 @@ package_vim-cli() {
 
     # Runtime provided by runtime package
     rm -r ${pkgdir}/usr/share/vim
+
+    # vi symlink
+    ln -sf /usr/bin/vim ${pkgdir}/usr/bin/vi
 
     # license
     install -dm755 ${pkgdir}/usr/share/licenses/vim-cli
