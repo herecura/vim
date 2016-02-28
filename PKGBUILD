@@ -10,13 +10,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1446
+_patchlevel=1456
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=80e78847395b5c8ada7861674774d81bd0a42789
+_gitcommit=29e1951e14907b62797554ad0cc85cbbe75a1be4
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -331,6 +331,10 @@ package_vim-rt() {
     pkgdesc='Runtime for vim and gvim'
     conflicts=('vim-runtime')
     provides=('vim-runtime')
+    optdepends=(
+        'python: tools'
+        'gawk: tools'
+    )
     backup=('etc/vimrc')
 
     # Install the runtime split from gvim
