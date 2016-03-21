@@ -10,13 +10,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1623
+_patchlevel=1633
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=e9d6a298df6108e2044b1f0da5a2712f0c51c7d9
+_gitcommit=b763eba7ae3540cd879f7c29882a29308f9688db
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -115,7 +115,7 @@ build() {
         --mandir=/usr/share/man --with-compiledby=BlackEagle \
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --enable-gui=gtk2 --enable-multibyte --enable-cscope \
-        --enable-netbeans  --enable-perlinterp=dynamic \
+        --disable-netbeans  --enable-perlinterp=dynamic \
         --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
@@ -127,7 +127,7 @@ build() {
         --mandir=/usr/share/man --with-compiledby=BlackEagle \
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --enable-gui=gtk3 --enable-multibyte --enable-cscope \
-        --enable-netbeans  --enable-perlinterp=dynamic \
+        --disable-netbeans  --enable-perlinterp=dynamic \
         --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
@@ -140,7 +140,7 @@ build() {
         --mandir=/usr/share/man --with-compiledby=BlackEagle \
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --enable-gui=qt --enable-multibyte --enable-cscope \
-        --enable-netbeans  --enable-perlinterp=dynamic \
+        --disable-netbeans  --enable-perlinterp=dynamic \
         --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
