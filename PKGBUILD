@@ -17,12 +17,12 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=819821c5a95fc60797ecbb5e5ca1302e397e3d9a
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt4' 'ruby' 'gtk3')
+makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3')
 options=()
 source=(
     "$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
@@ -135,11 +135,11 @@ build() {
 
     msg2 'Building vim-gvim-qt'
     cd ${srcdir}/gvim-build-qt
-    export PATH=$PATH:/usr/lib/qt4/bin
     ./configure --prefix=/usr --localstatedir=/var/lib/vim \
         --mandir=/usr/share/man --with-compiledby=BlackEagle \
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
-        --enable-gui=qt --enable-multibyte --enable-cscope \
+        --enable-gui=qt --with-qt-qmake=/usr/bin/qmake-qt5 \
+        --enable-multibyte --enable-cscope \
         --disable-netbeans  --enable-perlinterp=dynamic \
         --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
@@ -293,7 +293,7 @@ package_vim-gvim-gtk3() {
 
 package_vim-gvim-qt() {
     pkgdesc='Vi Improved, qt gui'
-    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'qt4')
+    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'qt5-base')
     provides=('gvim')
     install=gvim.install
 
