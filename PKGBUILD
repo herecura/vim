@@ -17,12 +17,12 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=8038568722a0aad72d001edf4972c29abab57f8f
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3')
+makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3' 'libxt')
 options=()
 source=(
     "$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
