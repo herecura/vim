@@ -20034,7 +20034,7 @@ diff -urN vim-src/src/qt/qt_features.h vim-qt-src/src/qt/qt_features.h
 diff -urN vim-src/src/qt/qvimshell.cpp vim-qt-src/src/qt/qvimshell.cpp
 --- vim-src/src/qt/qvimshell.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ vim-qt-src/src/qt/qvimshell.cpp	2016-01-22 22:44:52.191455438 +0100
-@@ -0,0 +1,741 @@
+@@ -0,0 +1,742 @@
 +#include "qvimshell.moc"
 +
 +#include <QResizeEvent>
@@ -20045,6 +20045,7 @@ diff -urN vim-src/src/qt/qvimshell.cpp vim-qt-src/src/qt/qvimshell.cpp
 +#include <QMimeData>
 +
 +#include "colortable.h"
++#include "proto/gui.pro"
 +
 +QVimShell::QVimShell(QWidget *parent)
 +:QWidget(parent), m_encoding_utf8(true),
@@ -22022,3 +22023,15 @@ diff -urN vim-src/src/winclip.c vim-qt-src/src/winclip.c
  
  #if defined(FEAT_MBYTE) || defined(PROTO)
  /*
+diff -urN vim-src/src/proto/gui.pro vim-qt-src/src/proto/gui.pro
+--- vim-src/src/proto/gui.pro
++++ vim-qt-src/src/proto/gui.pro
+@@ -57,7 +57,7 @@ void gui_mouse_correct(void);
+ void ex_gui(exarg_T *eap);
+ int gui_find_bitmap(char_u *name, char_u *buffer, char *ext);
+ void gui_find_iconfile(char_u *name, char_u *buffer, char *ext);
+-void display_errors(void);
++/*void display_errors(void);*/
+ int no_console_input(void);
+ void gui_update_screen(void);
+ char_u *get_find_dialog_text(char_u *arg, int *wwordp, int *mcasep);
