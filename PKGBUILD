@@ -17,7 +17,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=c61348e83fd4eed8b999fe5b7cdfb4caf90bf3fd
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
@@ -201,10 +201,9 @@ package_vim-cli() {
 
 package_vim-gvim-gtk2() {
     pkgdesc='Vi Improved, gtk2 gui'
-    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk2')
+    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk2' 'hicolor-icon-theme' 'shared-mime-info')
     provides=('gvim')
     replaces=('vim-gvim-gtk')
-    install=gvim.install
 
     # allow install of icons and desktopfiles
     install -dm755 "${pkgdir}/usr/share/icons/hicolor/48x48/apps"
@@ -247,10 +246,9 @@ package_vim-gvim-gtk2() {
 
 package_vim-gvim-gtk3() {
     pkgdesc='Vi Improved, gtk3 gui'
-    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk3')
+    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk3' 'hicolor-icon-theme' 'shared-mime-info')
     provides=('gvim')
     replaces=('vim-gvim-gtk')
-    install=gvim.install
 
     # allow install of icons and desktopfiles
     install -dm755 "${pkgdir}/usr/share/icons/hicolor/48x48/apps"
@@ -293,9 +291,8 @@ package_vim-gvim-gtk3() {
 
 package_vim-gvim-qt() {
     pkgdesc='Vi Improved, qt gui'
-    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'qt5-base')
+    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'qt5-base' 'hicolor-icon-theme' 'shared-mime-info')
     provides=('gvim')
-    install=gvim.install
 
     cd ${srcdir}/gvim-build-qt
     make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
