@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=7.4
-_patchlevel=1847
+_patchlevel=1859
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=13ddc5c35921efa69e980284117b6db6465e019c
+_gitcommit=ef3abc6442260e9a0314970a532400b05571d3fe
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -31,7 +31,6 @@ source=(
     'qt-icons.tar.gz'
     'qvim.desktop'
     'qvim.png'
-    'perl-5.22.2.patch'
 )
 sha256sums=('SKIP'
             '868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056'
@@ -40,8 +39,7 @@ sha256sums=('SKIP'
             'afabf2b32c63a1f4d6fa60be3f6da83bd491550d5cf863740465c29ca2b5c716'
             'f2f080ecf9830fe9891eb7a8adc29e83382825b1ca73bfd3a50a3e1b0bfaaf77'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
-            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280'
-            '10cbf10037b299c26b46d7220de1a81ff860a29f54a97152a99e5b4b81bfbffd')
+            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
 
 prepare() {
     # remove old build dirs if exist
@@ -54,7 +52,6 @@ prepare() {
     cp -a ${pkgbase} vim-build
     (
         cd vim-build && rm -rf ./.git*
-        patch -p1 -i "$srcdir/perl-5.22.2.patch"
     )
 
     # define the place for the global (g)vimrc file (set to /etc/vimrc)
