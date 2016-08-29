@@ -15,7 +15,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=7f7bd297d6d989254f71c694f1c72d07cbc5c306
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
@@ -190,6 +190,9 @@ package_vim-cli() {
     # vi symlink
     ln -sf /usr/bin/vim ${pkgdir}/usr/bin/vi
 
+    # no need for gvim references
+    find "$pkgdir" -name "gvim.*" -delete
+
     # license
     install -dm755 ${pkgdir}/usr/share/licenses/vim-cli
     install -Dm644 ${srcdir}/license.txt \
@@ -316,6 +319,12 @@ package_vim-gvim-qt() {
 
     # remove the man pages for common packaging
     rm -r ${pkgdir}/usr/share/man
+
+    # remove vim desktop file
+    rm ${pkgdir}/usr/share/applications/vim.desktop
+
+    # no need for gvim references
+    find "$pkgdir" -name "gvim.*" -delete
 
     # freedesktop links
     install -Dm644 ${srcdir}/qvim.desktop \
