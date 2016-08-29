@@ -15,7 +15,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=7f7bd297d6d989254f71c694f1c72d07cbc5c306
-pkgrel=2
+pkgrel=3
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
@@ -204,6 +204,7 @@ package_vim-gvim-gtk2() {
     depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk2' 'hicolor-icon-theme' 'shared-mime-info')
     provides=('gvim')
     replaces=('vim-gvim-gtk')
+    conflicts=('vim-gvim-gtk3')
 
     # allow install of icons and desktopfiles
     install -dm755 "${pkgdir}/usr/share/icons/hicolor/48x48/apps"
@@ -249,6 +250,7 @@ package_vim-gvim-gtk3() {
     depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'gtk3' 'hicolor-icon-theme' 'shared-mime-info')
     provides=('gvim')
     replaces=('vim-gvim-gtk')
+    conflicts=('vim-gvim-gtk2')
 
     # allow install of icons and desktopfiles
     install -dm755 "${pkgdir}/usr/share/icons/hicolor/48x48/apps"
