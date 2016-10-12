@@ -20110,33 +20110,6 @@ diff -urN vim-src/src/os_unix.c vim-qt-src/src/os_unix.c
  	else
  	    gui_mch_settitle(title, icon);
  #endif
-diff -urN vim-src/src/os_win32.c vim-qt-src/src/os_win32.c
---- vim-src/src/os_win32.c	2016-08-27 22:36:28.809794375 +0200
-+++ vim-qt-src/src/os_win32.c	2016-08-27 22:36:05.465794760 +0200
-@@ -2102,9 +2102,9 @@
-     if (!executable_exists("findstr.exe", NULL))
- 	set_option_value((char_u *)"grepprg", 0, (char_u *)"grep -n", 0);
- 
--#ifdef FEAT_CLIPBOARD
-+#if defined(FEAT_CLIPBOARD) && !defined(FEAT_GUI_QT)
-     win_clip_init();
--#endif
-+#endif /* FEAT_CLIPBOARD && !FEAT_GUI_QT */
- }
- 
- 
-@@ -2585,9 +2585,9 @@
-     g_fMouseAvail = GetSystemMetrics(SM_MOUSEPRESENT);
- #endif
- 
--#ifdef FEAT_CLIPBOARD
-+#if defined(FEAT_CLIPBOARD) && !defined(FEAT_GUI_QT)
-     win_clip_init();
--#endif
-+#endif /* FEAT_CLIPBOARD && !FEAT_GUI_QT */
- 
-     /* This will be NULL on anything but NT 4.0 */
-     s_pfnGetConsoleKeyboardLayoutName =
 diff -urN vim-src/src/pathdef.cmake.in vim-qt-src/src/pathdef.cmake.in
 --- vim-src/src/pathdef.cmake.in	1970-01-01 01:00:00.000000000 +0100
 +++ vim-qt-src/src/pathdef.cmake.in	2016-06-08 06:39:27.000000000 +0200

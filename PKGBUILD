@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=8.0
-_patchlevel=0028
+_patchlevel=0030
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=a7c023ec88233a2db4c1f53121921e110ece8d43
+_gitcommit=0ba407012c63064f03f1a5677677d4da423e5a73
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -36,7 +36,7 @@ sha256sums=('SKIP'
             '868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056'
             '1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209'
             'bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55'
-            'dd336b4ba3769891dc405e808805b3cf2d0dd028067705350af4f9818c54d5f1'
+            '75ea7080398b0b970b3828ebc90ea2174d12f5c63079fa673dc53dcd603f97b9'
             '57d81c32dbec6d1771a67dd9f40ffcc65e6aa7659bd9a43a0b0e419b538f372d'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
             'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
