@@ -15,7 +15,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=a1f4cb93ba50ea9e40cd4b1f5592b8a6d1398660
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
@@ -31,6 +31,7 @@ source=(
     'qt-icons.tar.gz'
     'qvim.desktop'
     'qvim.png'
+    '1193.patch'
 )
 sha256sums=('SKIP'
             '868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056'
@@ -39,7 +40,8 @@ sha256sums=('SKIP'
             '75ea7080398b0b970b3828ebc90ea2174d12f5c63079fa673dc53dcd603f97b9'
             '57d81c32dbec6d1771a67dd9f40ffcc65e6aa7659bd9a43a0b0e419b538f372d'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
-            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
+            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280'
+            'f17bf80af0e9de9434003711eb55442ed03a47058200881179a1eb0091d5fa30')
 
 prepare() {
     # remove old build dirs if exist
@@ -52,6 +54,7 @@ prepare() {
     cp -a ${pkgbase} vim-build
     (
         cd vim-build && rm -rf ./.git*
+        patch -p1 -i "$srcdir/1193.patch"
     )
 
     # define the place for the global (g)vimrc file (set to /etc/vimrc)
