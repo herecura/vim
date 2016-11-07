@@ -8,14 +8,14 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=8.0
-_patchlevel=0069
+_patchlevel=0070
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=a1f4cb93ba50ea9e40cd4b1f5592b8a6d1398660
-pkgrel=2
+_gitcommit=3f9ebf32a392a9cae1c3e4b6bf8cecad60e2a22a
+pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
@@ -24,24 +24,18 @@ makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' '
 options=()
 source=(
     "$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
-    'vimrc'
-    'peaksea.vim'
     'license.txt'
     'vim-qt-src.patch'
     'qt-icons.tar.gz'
     'qvim.desktop'
     'qvim.png'
-    '1193.patch'
 )
 sha256sums=('SKIP'
-            '868486500e70b4b45618cdae32fdb3b228baf3995e9ccce5e86bf54780431056'
-            '1cbb92f80c981a9618bc50a626e2713435b7014cac842e664d0b3027f86bd209'
             'bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55'
             '75ea7080398b0b970b3828ebc90ea2174d12f5c63079fa673dc53dcd603f97b9'
             '57d81c32dbec6d1771a67dd9f40ffcc65e6aa7659bd9a43a0b0e419b538f372d'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
-            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280'
-            'f17bf80af0e9de9434003711eb55442ed03a47058200881179a1eb0091d5fa30')
+            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
 
 prepare() {
     # remove old build dirs if exist
@@ -54,7 +48,6 @@ prepare() {
     cp -a ${pkgbase} vim-build
     (
         cd vim-build && rm -rf ./.git*
-        patch -p1 -i "$srcdir/1193.patch"
     )
 
     # define the place for the global (g)vimrc file (set to /etc/vimrc)
@@ -350,7 +343,6 @@ package_vim-rt() {
         'python: tools'
         'gawk: tools'
     )
-    backup=('etc/vimrc')
 
     # Install the runtime split from gvim
     install -dm755 ${pkgdir}/usr/share
@@ -369,13 +361,6 @@ package_vim-rt() {
         ${pkgdir}/usr/share/vim/${_versiondir}/filetype.vim
     sed -i "/find the end/,+3{s/changelog_date_entry_search/changelog_date_end_entry_search/}" \
         ${pkgdir}/usr/share/vim/${_versiondir}/ftplugin/changelog.vim
-
-    # rc files
-    #install -dm755 ${pkgdir}/etc/vim
-    install -Dm644 ${srcdir}/vimrc ${pkgdir}/etc/vimrc
-    install -dm755 ${pkgdir}/usr/share/vim/vimfiles/colors
-    install -Dm644 ${srcdir}/peaksea.vim \
-        ${pkgdir}/usr/share/vim/vimfiles/colors/peaksea.vim
 
     # license
     install -dm755 ${pkgdir}/usr/share/licenses/vim-rt
