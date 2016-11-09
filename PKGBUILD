@@ -20,7 +20,7 @@ _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'perl' 'python2' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3' 'libxt')
+makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3' 'libxt')
 options=()
 source=(
     "$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
@@ -97,7 +97,7 @@ build() {
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --disable-gui --enable-multibyte --enable-cscope \
         --disable-netbeans --enable-perlinterp=dynamic \
-        --enable-pythoninterp=dynamic \
+        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
     make
@@ -109,7 +109,7 @@ build() {
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --enable-gui=gtk2 --enable-multibyte --enable-cscope \
         --disable-netbeans  --enable-perlinterp=dynamic \
-        --enable-pythoninterp=dynamic \
+        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
     make
@@ -121,7 +121,7 @@ build() {
         --with-features=huge --enable-gpm --enable-acl --with-x=yes \
         --enable-gui=gtk3 --enable-multibyte --enable-cscope \
         --disable-netbeans  --enable-perlinterp=dynamic \
-        --enable-pythoninterp=dynamic \
+        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
     make
@@ -134,7 +134,7 @@ build() {
         --enable-gui=qt --with-qt-qmake=/usr/bin/qmake-qt5 \
         --enable-multibyte --enable-cscope \
         --disable-netbeans  --enable-perlinterp=dynamic \
-        --enable-pythoninterp=dynamic \
+        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
         --enable-rubyinterp=dynamic --enable-luainterp=dynamic
         #--disable-rubyinterp --enable-luainterp=dynamic
     make
@@ -167,6 +167,7 @@ package_vim-cli() {
     optdepends=(
         'perl: vim perl binding'
         'python2: vim python2 binding'
+        'python: vim python3 binding'
         'lua: vim lua binding'
         'ruby: vim ruby binding'
     )
@@ -339,7 +340,7 @@ package_vim-rt() {
     conflicts=('vim-runtime')
     provides=('vim-runtime')
     optdepends=(
-        'python2: tools'
+        'python: tools'
         'gawk: tools'
     )
 
