@@ -152,8 +152,8 @@ diff -urN vim-src/src/CMakeLists.txt vim-qt-src/src/CMakeLists.txt
 +
 +
 diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
---- vim-src/src/Makefile	2016-11-12 20:45:55.090271787 +0100
-+++ vim-qt-src/src/Makefile	2016-11-12 20:45:29.993053791 +0100
+--- vim-src/src/Makefile	2016-11-12 23:01:38.105897378 +0100
++++ vim-qt-src/src/Makefile	2016-11-12 23:01:44.501955216 +0100
 @@ -379,7 +379,7 @@
  #CONF_OPT_GUI = --enable-gui=carbon
  
@@ -16479,9 +16479,9 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 -if test -f configure.lineno; then rm -f configure.lineno; fi
  
 -exit $result
-diff -urN vim-src/src/configure.in vim-qt-src/src/configure.in
---- vim-src/src/configure.in	2016-11-12 20:45:55.106271926 +0100
-+++ vim-qt-src/src/configure.in	2016-11-12 20:45:30.001053861 +0100
+diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
+--- vim-src/src/configure.ac	2016-11-12 23:01:38.107897396 +0100
++++ vim-qt-src/src/configure.ac	2016-11-12 23:01:44.503955234 +0100
 @@ -2184,11 +2184,11 @@
    fi
  fi
@@ -16782,8 +16782,8 @@ diff -urN vim-src/src/ex_docmd.c vim-qt-src/src/ex_docmd.c
  
  /*
 diff -urN vim-src/src/feature.h vim-qt-src/src/feature.h
---- vim-src/src/feature.h	2016-11-12 20:46:23.285516569 +0100
-+++ vim-qt-src/src/feature.h	2016-11-12 20:46:30.620580230 +0100
+--- vim-src/src/feature.h	2016-11-12 23:01:55.917058442 +0100
++++ vim-qt-src/src/feature.h	2016-11-12 23:02:11.307197618 +0100
 @@ -40,6 +40,10 @@
   * When +small is used, +tiny is also included.  +normal implies +small, etc.
   */
@@ -19337,8 +19337,8 @@ diff -urN vim-src/src/os_mswin.c vim-qt-src/src/os_mswin.c
  #else
  static HWND s_hwnd = 0;	    /* console window handle, set by GetConsoleHwnd() */
 diff -urN vim-src/src/os_unix.c vim-qt-src/src/os_unix.c
---- vim-src/src/os_unix.c	2016-11-12 20:45:55.161272403 +0100
-+++ vim-qt-src/src/os_unix.c	2016-11-12 20:45:30.023054052 +0100
+--- vim-src/src/os_unix.c	2016-11-12 23:01:38.109897414 +0100
++++ vim-qt-src/src/os_unix.c	2016-11-12 23:01:44.530955478 +0100
 @@ -2172,7 +2172,7 @@
      if (get_x11_windis() == OK)
  	type = 1;
