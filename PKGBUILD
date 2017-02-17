@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=8.0
-_patchlevel=0329
+_patchlevel=0330
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=10434674821939222bf552d15d93e0132d13badc
+_gitcommit=84b2a381451e9068b09ef6d85f5e8cf1598e7355
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -178,7 +178,7 @@ package_vim-cli() {
         'ruby: vim ruby binding'
     )
     conflicts=('vi' 'vim')
-    provides=('vim')
+    provides=('vim' 'xxd')
 
     cd ${srcdir}/vim-build
     make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
