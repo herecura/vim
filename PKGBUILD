@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=8.0
-_patchlevel=0498
+_patchlevel=0499
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=e94260f3582cf928cc59e792b3b6ede57794a4a6
+_gitcommit=c6aafbaf3ea755e3ab4ee2e3045911126a08b038
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
