@@ -1,7 +1,7 @@
 diff -urN vim-src/.travis.yml vim-qt-src/.travis.yml
---- vim-src/.travis.yml	2016-11-12 20:45:54.946270536 +0100
-+++ vim-qt-src/.travis.yml	2016-08-10 22:42:15.157163143 +0200
-@@ -69,10 +69,6 @@
+--- vim-src/.travis.yml	2017-07-19 21:32:47.165141249 +0200
++++ vim-qt-src/.travis.yml	2017-07-19 21:35:27.309386575 +0200
+@@ -82,10 +82,6 @@
      # Lua is not installed on Travis OSX
    - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install lua; export LUA_PREFIX=/usr/local; fi
  
@@ -13,8 +13,8 @@ diff -urN vim-src/.travis.yml vim-qt-src/.travis.yml
    - NPROC=$(getconf _NPROCESSORS_ONLN)
    - if [ "$CHECK_AUTOCONF" = "yes" -a "$CC" = "gcc" ]; then make -C src autoconf; fi
 diff -urN vim-src/runtime/menu.vim vim-qt-src/runtime/menu.vim
---- vim-src/runtime/menu.vim	2016-08-10 22:41:56.924989706 +0200
-+++ vim-qt-src/runtime/menu.vim	2016-08-10 22:42:15.179163352 +0200
+--- vim-src/runtime/menu.vim	2017-07-19 21:32:47.250141911 +0200
++++ vim-qt-src/runtime/menu.vim	2017-07-19 21:35:27.382387143 +0200
 @@ -383,7 +383,7 @@
    endif
    unlet s:n
@@ -26,7 +26,7 @@ diff -urN vim-src/runtime/menu.vim vim-qt-src/runtime/menu.vim
  
 diff -urN vim-src/src/CMakeLists.txt vim-qt-src/src/CMakeLists.txt
 --- vim-src/src/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/CMakeLists.txt	2016-11-12 19:19:43.592238165 +0100
++++ vim-qt-src/src/CMakeLists.txt	2017-07-19 21:34:44.771056033 +0200
 @@ -0,0 +1,123 @@
 +cmake_minimum_required(VERSION 2.8)
 +
@@ -152,8 +152,8 @@ diff -urN vim-src/src/CMakeLists.txt vim-qt-src/src/CMakeLists.txt
 +
 +
 diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
---- vim-src/src/Makefile	2016-11-12 23:01:38.105897378 +0100
-+++ vim-qt-src/src/Makefile	2016-11-12 23:01:44.501955216 +0100
+--- vim-src/src/Makefile	2017-07-19 21:32:47.274142098 +0200
++++ vim-qt-src/src/Makefile	2017-07-19 21:35:27.399387275 +0200
 @@ -379,7 +379,7 @@
  #CONF_OPT_GUI = --enable-gui=carbon
  
@@ -163,7 +163,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  
  # DARWIN - detecting Mac OS X
  # Uncomment this line when you want to compile a Unix version of Vim on
-@@ -1321,6 +1321,39 @@
+@@ -1330,6 +1330,39 @@
  NEXTAW_TESTTARGET = gui
  NEXTAW_BUNDLE	=
  
@@ -203,7 +203,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  ### (J)  Sun OpenWindows 3.2 (SunOS 4.1.x) or earlier that produce these ld
  #	 errors:  ld: Undefined symbol
  #		      _get_wmShellWidgetClass
-@@ -1365,7 +1398,7 @@
+@@ -1374,7 +1407,7 @@
  CARBONGUI_TESTARG = VIMPROG=../$(APPDIR)/Contents/MacOS/$(VIMTARGET)
  
  # All GUI files
@@ -212,7 +212,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  ALL_GUI_PRO  = gui.pro gui_gtk.pro gui_motif.pro gui_xmdlg.pro gui_athena.pro gui_gtk_x11.pro gui_x11.pro gui_w32.pro gui_photon.pro
  
  # }}}
-@@ -1413,7 +1446,7 @@
+@@ -1434,7 +1467,7 @@
  PRE_DEFS = -Iproto $(DEFS) $(GUI_DEFS) $(GUI_IPATH) $(CPPFLAGS) $(EXTRA_IPATHS)
  POST_DEFS = $(X_CFLAGS) $(MZSCHEME_CFLAGS) $(EXTRA_DEFS)
  
@@ -221,7 +221,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  
  # Exclude $CFLAGS for osdef.sh, for Mac 10.4 some flags don't work together
  # with "-E".
-@@ -1573,7 +1606,7 @@
+@@ -1596,7 +1629,7 @@
  	$(WORKSHOP_SRC) \
  	$(WSDEBUG_SRC)
  
@@ -230,7 +230,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  
  EXTRA_SRC = hangulin.c if_lua.c if_mzsch.c auto/if_perl.c if_perlsfio.c \
  	    if_python.c if_python3.c if_tcl.c if_ruby.c \
-@@ -2934,6 +2967,56 @@
+@@ -3059,6 +3092,56 @@
  objects/gui_athena.o: gui_athena.c
  	$(CCC) -o $@ gui_athena.c
  
@@ -289,7 +289,7 @@ diff -urN vim-src/src/Makefile vim-qt-src/src/Makefile
  
 diff -urN vim-src/src/Toolchain-mingw32.cmake vim-qt-src/src/Toolchain-mingw32.cmake
 --- vim-src/src/Toolchain-mingw32.cmake	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/Toolchain-mingw32.cmake	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/Toolchain-mingw32.cmake	2017-07-19 21:34:44.776056071 +0200
 @@ -0,0 +1,18 @@
 +
 +SET(CMAKE_SYSTEM_NAME Windows)
@@ -310,9 +310,9 @@ diff -urN vim-src/src/Toolchain-mingw32.cmake vim-qt-src/src/Toolchain-mingw32.c
 +SET(QT_RCC_EXECUTABLE /usr/i686-w64-mingw32/bin/rcc CACHE INTERNAL "" FORCE)
 +SET(QT_UIC_EXECUTABLE /usr/i686-w64-mingw32/bin/uic CACHE INTERNAL "" FORCE)
 diff -urN vim-src/src/config.mk.in vim-qt-src/src/config.mk.in
---- vim-src/src/config.mk.in	2016-06-08 06:34:09.000000000 +0200
-+++ vim-qt-src/src/config.mk.in	2016-06-08 06:40:09.000000000 +0200
-@@ -157,6 +157,12 @@
+--- vim-src/src/config.mk.in	2017-07-19 21:32:47.284142175 +0200
++++ vim-qt-src/src/config.mk.in	2017-07-19 21:35:27.408387345 +0200
+@@ -159,6 +159,12 @@
  GUI_X_LIBS	= @GUI_X_LIBS@
  MOTIF_LIBNAME	= @MOTIF_LIBNAME@
  GTK_LIBNAME	= @GTK_LIBNAME@
@@ -327,8 +327,8 @@ diff -urN vim-src/src/config.mk.in vim-qt-src/src/config.mk.in
  GRESOURCE_SRC = @GRESOURCE_SRC@
 diff -urN vim-src/src/configure vim-qt-src/src/configure
 --- vim-src/src/configure	2016-01-21 17:44:00.000000000 +0100
-+++ vim-qt-src/src/configure	2016-11-12 20:45:30.001053861 +0100
-@@ -1,10 +1,16143 @@
++++ vim-qt-src/src/configure	2017-07-19 21:35:27.410387360 +0200
+@@ -1,10 +1,16196 @@
  #! /bin/sh
 -# run the automatically generated configure script
 -CONFIG_STATUS=auto/config.status \
@@ -1001,6 +1001,8 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +X_CFLAGS
 +XMKMF
 +xmkmfpath
++TERM_OBJ
++TERM_SRC
 +CHANNEL_OBJ
 +CHANNEL_SRC
 +NETBEANS_OBJ
@@ -1159,6 +1161,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +enable_workshop
 +enable_netbeans
 +enable_channel
++enable_terminal
 +enable_multibyte
 +enable_hangulinput
 +enable_xim
@@ -1818,22 +1821,23 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  --disable-selinux	  Do not check for SELinux support.
 +  --disable-xsmp          Disable XSMP session management
 +  --disable-xsmp-interact Disable XSMP interaction
-+  --enable-luainterp=OPTS     Include Lua interpreter.  default=no OPTS=no/yes/dynamic
-+  --enable-mzschemeinterp   Include MzScheme interpreter.
++  --enable-luainterp=OPTS      Include Lua interpreter.  default=no OPTS=no/yes/dynamic
++  --enable-mzschemeinterp      Include MzScheme interpreter.
 +  --enable-perlinterp=OPTS     Include Perl interpreter.  default=no OPTS=no/yes/dynamic
 +  --enable-pythoninterp=OPTS   Include Python interpreter. default=no OPTS=no/yes/dynamic
-+  --enable-python3interp=OPTS   Include Python3 interpreter. default=no OPTS=no/yes/dynamic
++  --enable-python3interp=OPTS  Include Python3 interpreter. default=no OPTS=no/yes/dynamic
 +  --enable-tclinterp=OPTS      Include Tcl interpreter. default=no OPTS=no/yes/dynamic
 +  --enable-rubyinterp=OPTS     Include Ruby interpreter.  default=no OPTS=no/yes/dynamic
 +  --enable-cscope         Include cscope interface.
 +  --enable-workshop       Include Sun Visual Workshop support.
 +  --disable-netbeans      Disable NetBeans integration support.
-+  --disable-channel      Disable process communication support.
++  --disable-channel       Disable process communication support.
++  --enable-terminal       Enable terminal emulation support.
 +  --enable-multibyte      Include multibyte editing support.
 +  --enable-hangulinput    Include Hangul input support.
 +  --enable-xim            Include XIM input support.
 +  --enable-fontset        Include X fontset output support.
-+  --enable-gui=OPTS     X11 GUI default=auto OPTS=auto/no/gtk2/gnome2/gtk3/motif/athena/neXtaw/photon/carbon/qt
++  --enable-gui=OPTS       X11 GUI. default=auto OPTS=auto/no/gtk2/gnome2/gtk3/motif/athena/neXtaw/photon/carbon/qt
 +  --enable-gtk2-check     If auto-select GUI, check for GTK+ 2 default=yes
 +  --enable-gnome-check    If GTK GUI, check for GNOME default=no
 +  --enable-gtk3-check     If auto-select GUI, check for GTK+ 3 default=yes
@@ -1847,7 +1851,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  --disable-largefile     omit support for large files
 +  --disable-acl           Don't check for ACL support.
 +  --disable-gpm           Don't use gpm (Linux mouse daemon).
-+  --disable-sysmouse    Don't use sysmouse (mouse in *BSD console).
++  --disable-sysmouse      Don't use sysmouse (mouse in *BSD console).
 +  --disable-nls           Don't support NLS (gettext()).
 +
 +Optional Packages:
@@ -1875,7 +1879,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  --with-gnome-includes=DIR Specify location of GNOME headers
 +  --with-gnome-libs=DIR   Specify location of GNOME libs
 +  --with-gnome            Specify prefix for GNOME files
-+  --with-motif-lib=STRING   Library for Motif
++  --with-motif-lib=STRING Library for Motif
 +  --with-qt-qmake=PATH   QMake location (ex: /usr/lib/qt4/bin/qmake)
 +  --with-tlib=library     terminal library to be used
 +
@@ -3825,7 +3829,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 +ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 +ac_compiler_gnu=$ac_cv_c_compiler_gnu
-+	ac_ext=c
++		ac_ext=c
 +ac_cpp='$CPP $CPPFLAGS'
 +ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 +ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
@@ -4102,7 +4106,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +
 +fi
 +rm -f conftest*
-+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for fgrep" >&5
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for fgrep" >&5
 +$as_echo_n "checking for fgrep... " >&6; }
 +if ${ac_cv_path_FGREP+:} false; then :
 +  $as_echo_n "(cached) " >&6
@@ -4168,7 +4172,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +$as_echo "$ac_cv_path_FGREP" >&6; }
 + FGREP="$ac_cv_path_FGREP"
 +
-+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing strerror" >&5
++		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing strerror" >&5
 +$as_echo_n "checking for library containing strerror... " >&6; }
 +if ${ac_cv_search_strerror+:} false; then :
 +  $as_echo_n "(cached) " >&6
@@ -4223,7 +4227,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  test "$ac_res" = "none required" || LIBS="$ac_res $LIBS"
 +
 +fi
-+	for ac_prog in gawk mawk nawk awk
++		for ac_prog in gawk mawk nawk awk
 +do
 +  # Extract the first word of "$ac_prog", so it can be a program name with args.
 +set dummy $ac_prog; ac_word=$2
@@ -4493,9 +4497,9 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  fi
 +fi
 +
-+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for recent clang version" >&5
-+$as_echo_n "checking for recent clang version... " >&6; }
-+CLANG_VERSION_STRING=`$CC --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*$/\1/p'`
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for clang version" >&5
++$as_echo_n "checking for clang version... " >&6; }
++CLANG_VERSION_STRING=`$CC --version 2>/dev/null | sed  -n -e 's/^.*clang[^0-9]*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*$/\1/p'`
 +if test x"$CLANG_VERSION_STRING" != x"" ; then
 +  CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*/\1/p'`
 +  CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[0-9][0-9]*\.\([0-9][0-9]*\)\.[0-9][0-9]*/\1/p'`
@@ -4503,12 +4507,19 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  CLANG_VERSION=`expr $CLANG_MAJOR '*' 1000000 '+' $CLANG_MINOR '*' 1000 '+' $CLANG_REVISION`
 +  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CLANG_VERSION" >&5
 +$as_echo "$CLANG_VERSION" >&6; }
-+          if test "$CLANG_VERSION" -ge 500002075 ; then
-+    CFLAGS=`echo "$CFLAGS" | sed -n -e 's/-fno-strength-reduce/ /p'`
++          { $as_echo "$as_me:${as_lineno-$LINENO}: checking if clang supports -fno-strength-reduce" >&5
++$as_echo_n "checking if clang supports -fno-strength-reduce... " >&6; }
++  if test "$CLANG_VERSION" -ge 500002075 ; then
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++    CFLAGS=`echo "$CFLAGS" | sed -e 's/-fno-strength-reduce/ /'`
++  else
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
 +  fi
 +else
-+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-+$as_echo "no" >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: result: N/A" >&5
++$as_echo "N/A" >&6; }
 +fi
 +
 +CROSS_COMPILING=
@@ -7790,7 +7801,7 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +	/* Check bitfields */
 +	struct nbbuf {
 +	unsigned int  initDone:1;
-+	ushort signmaplen;
++	unsigned short signmaplen;
 +	};
 +
 +int
@@ -7833,6 +7844,35 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +  CHANNEL_SRC="channel.c"
 +
 +  CHANNEL_OBJ="objects/channel.o"
++
++fi
++
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking --enable-terminal argument" >&5
++$as_echo_n "checking --enable-terminal argument... " >&6; }
++# Check whether --enable-terminal was given.
++if test "${enable_terminal+set}" = set; then :
++  enableval=$enable_terminal; enable_terminal="yes"
++fi
++
++if test "$enable_terminal" = "yes"; then
++  if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: cannot use terminal emulator with tiny or small features" >&5
++$as_echo "cannot use terminal emulator with tiny or small features" >&6; }
++    enable_terminal="no"
++  else
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++  fi
++else
++  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++fi
++if test "$enable_terminal" = "yes"; then
++  $as_echo "#define FEAT_TERMINAL 1" >>confdefs.h
++
++  TERM_SRC="libvterm/src/encoding.c libvterm/src/keyboard.c libvterm/src/mouse.c libvterm/src/parser.c libvterm/src/pen.c libvterm/src/screen.c libvterm/src/state.c libvterm/src/unicode.c libvterm/src/vterm.c"
++
++  TERM_OBJ="objects/term_encoding.o objects/term_keyboard.o objects/term_mouse.o objects/term_parser.o objects/term_pen.o objects/term_screen.o objects/term_state.o objects/term_unicode.o objects/term_vterm.o"
 +
 +fi
 +
@@ -9375,11 +9415,6 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +    fi
 +  fi
 +  if test "x$GUITYPE" = "xGTK"; then
-+    if test "$gtk_minor_version" = 1 -a "0$gtk_micro_version" -ge 1 \
-+	|| test "0$gtk_minor_version" -ge 2; then
-+      $as_echo "#define HAVE_GTK_MULTIHEAD 1" >>confdefs.h
-+
-+    fi
 +                if test -z "$SKIP_GNOME"; then
 +    {
 +
@@ -9671,8 +9706,6 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +      SKIP_NEXTAW=YES
 +      SKIP_MOTIF=YES
 +      GUITYPE=GTK
-+
-+      $as_echo "#define HAVE_GTK_MULTIHEAD 1" >>confdefs.h
 +
 +      $as_echo "#define USE_GTK3 1" >>confdefs.h
 +
@@ -11189,6 +11222,28 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +
 +
 +
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for /proc link to executable" >&5
++$as_echo_n "checking for /proc link to executable... " >&6; }
++if test -L "/proc/self/exe"; then
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: /proc/self/exe" >&5
++$as_echo "/proc/self/exe" >&6; }
++  $as_echo "#define PROC_EXE_LINK \"/proc/self/exe\"" >>confdefs.h
++
++elif test -L "/proc/self/path/a.out"; then
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: /proc/self/path/a.out" >&5
++$as_echo "/proc/self/path/a.out" >&6; }
++  $as_echo "#define PROC_EXE_LINK \"/proc/self/path/a.out\"" >>confdefs.h
++
++elif test -L "/proc/curproc/file"; then
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: /proc/curproc/file" >&5
++$as_echo "/proc/curproc/file" >&6; }
++  $as_echo "#define PROC_EXE_LINK \"/proc/curproc/file\"" >>confdefs.h
++
++else
++  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++fi
++
 +{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for CYGWIN or MSYS environment" >&5
 +$as_echo_n "checking for CYGWIN or MSYS environment... " >&6; }
 +case `uname` in
@@ -12572,16 +12627,15 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +
 +fi
 +
-+if test "x$olibs" != "x$LIBS"; then
-+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking what tgetent() returns for an unknown terminal" >&5
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking what tgetent() returns for an unknown terminal" >&5
 +$as_echo_n "checking what tgetent() returns for an unknown terminal... " >&6; }
 +if ${vim_cv_tgent+:} false; then :
 +  $as_echo_n "(cached) " >&6
 +else
 +
-+      if test "$cross_compiling" = yes; then :
++    if test "$cross_compiling" = yes; then :
 +
-+	as_fn_error $? "failed to compile test program." "$LINENO" 5
++      as_fn_error $? "failed to compile test program." "$LINENO" 5
 +
 +else
 +  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
@@ -12601,11 +12655,11 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +_ACEOF
 +if ac_fn_c_try_run "$LINENO"; then :
 +
-+	vim_cv_tgent=zero
++      vim_cv_tgent=zero
 +
 +else
 +
-+	vim_cv_tgent=non-zero
++      vim_cv_tgent=non-zero
 +
 +fi
 +rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext \
@@ -12617,10 +12671,9 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $vim_cv_tgent" >&5
 +$as_echo "$vim_cv_tgent" >&6; }
 +
-+  if test "x$vim_cv_tgent" = "xzero" ; then
-+    $as_echo "#define TGETENT_ZERO_ERR 0" >>confdefs.h
++if test "x$vim_cv_tgent" = "xzero" ; then
++  $as_echo "#define TGETENT_ZERO_ERR 0" >>confdefs.h
 +
-+  fi
 +fi
 +
 +{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether termcap.h contains ospeed" >&5
@@ -13095,10 +13148,10 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
 +
 +fi
 +
-+for ac_func in bcmp fchdir fchown fsync getcwd getpseudotty \
-+	getpwent getpwnam getpwuid getrlimit gettimeofday getwd lstat memcmp \
++for ac_func in fchdir fchown fsync getcwd getpseudotty \
++	getpwent getpwnam getpwuid getrlimit gettimeofday getwd lstat \
 +	memset mkdtemp nanosleep opendir putenv qsort readlink select setenv \
-+	setpgid setsid sigaltstack sigstack sigset sigsetjmp sigaction \
++	getpgid setpgid setsid sigaltstack sigstack sigset sigsetjmp sigaction \
 +	sigprocmask sigvec strcasecmp strerror strftime stricmp strncasecmp \
 +	strnicmp strpbrk strtol tgetent towlower towupper iswupper \
 +	usleep utime utimes
@@ -16480,9 +16533,116 @@ diff -urN vim-src/src/configure vim-qt-src/src/configure
  
 -exit $result
 diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
---- vim-src/src/configure.ac	2016-11-12 23:01:38.107897396 +0100
-+++ vim-qt-src/src/configure.ac	2016-11-12 23:01:44.503955234 +0100
-@@ -2184,11 +2184,11 @@
+--- vim-src/src/configure.ac	2017-07-19 21:32:47.286142191 +0200
++++ vim-qt-src/src/configure.ac	2017-07-19 21:35:27.411387368 +0200
+@@ -34,7 +34,7 @@
+ AC_MSG_CHECKING(--enable-fail-if-missing argument)
+ AC_ARG_ENABLE(fail_if_missing,
+ 	[  --enable-fail-if-missing    Fail if dependencies on additional features
+-     specified on the command line are missing.], 
++     specified on the command line are missing.],
+ 	[fail_if_missing="yes"],
+ 	[fail_if_missing="no"])
+ AC_MSG_RESULT($fail_if_missing)
+@@ -161,7 +161,7 @@
+   AC_ARG_WITH(developer-dir, [  --with-developer-dir=PATH    use PATH as location for Xcode developer tools],
+ 	DEVELOPER_DIR="$withval"; AC_MSG_RESULT($DEVELOPER_DIR),
+         AC_MSG_RESULT(not present))
+-  
++
+   if test "x$DEVELOPER_DIR" = "x"; then
+     AC_PATH_PROG(XCODE_SELECT, xcode-select)
+     if test "x$XCODE_SELECT" != "x"; then
+@@ -1364,36 +1364,36 @@
+        if ${vi_cv_path_python3} -c \
+            "import sys; sys.exit(${vi_cv_var_python3_version} < 3.2)"
+        then
+-         vi_cv_var_python3_abiflags=`${vi_cv_path_python3} -c \    
++         vi_cv_var_python3_abiflags=`${vi_cv_path_python3} -c \
+            "import sys; print(sys.abiflags)"`
+        fi ])
+-  
++
+       dnl -- find where python3 thinks it was installed
+       AC_CACHE_CHECK(Python's install prefix,vi_cv_path_python3_pfx,
+       [ vi_cv_path_python3_pfx=`
+        ${vi_cv_path_python3} -c \
+        "import sys; print(sys.prefix)"` ])
+-  
++
+       dnl -- and where it thinks it runs
+       AC_CACHE_CHECK(Python's execution prefix,vi_cv_path_python3_epfx,
+       [ vi_cv_path_python3_epfx=`
+        ${vi_cv_path_python3} -c \
+        "import sys; print(sys.exec_prefix)"` ])
+-  
++
+       dnl -- python3's internal library path
+-  
++
+       AC_CACHE_VAL(vi_cv_path_python3path,
+       [ vi_cv_path_python3path=`
+        unset PYTHONPATH;
+        ${vi_cv_path_python3} -c \
+        "import sys, string; print(':'.join(sys.path))"` ])
+-  
++
+       dnl -- where the Python implementation library archives are
+-  
++
+       AC_ARG_WITH(python3-config-dir,
+        [  --with-python3-config-dir=PATH  Python's config directory],
+        [ vi_cv_path_python3_conf="${withval}" ] )
+-  
++
+       AC_CACHE_CHECK(Python's configuration directory,vi_cv_path_python3_conf,
+       [
+        vi_cv_path_python3_conf=
+@@ -1412,13 +1412,13 @@
+          done
+        fi
+       ])
+-  
++
+       PYTHON3_CONFDIR="${vi_cv_path_python3_conf}"
+-  
++
+       if test "X$PYTHON3_CONFDIR" = "X"; then
+         AC_MSG_RESULT([can't find it!])
+       else
+-  
++
+         dnl -- we need to examine Python's config/Makefile too
+         dnl    see what the interpreter is built from
+         AC_CACHE_VAL(vi_cv_path_python3_plibs,
+@@ -1459,7 +1459,7 @@
+         fi
+         PYTHON3_SRC="if_python3.c"
+         PYTHON3_OBJ="objects/if_python3.o"
+-  
++
+         dnl On FreeBSD linking with "-pthread" is required to use threads.
+         dnl _THREAD_SAFE must be used for compiling then.
+         dnl The "-pthread" is added to $LIBS, so that the following check for
+@@ -1494,7 +1494,7 @@
+         else
+           AC_MSG_RESULT(no)
+         fi
+-  
++
+         dnl check that compiling a simple program still works with the flags
+         dnl added for Python.
+         AC_MSG_CHECKING([if compile and link flags for Python 3 are sane])
+@@ -1533,7 +1533,7 @@
+ AC_SUBST(PYTHON3_OBJ)
+ 
+ dnl if python2.x and python3.x are enabled one can only link in code
+-dnl with dlopen(), dlsym(), dlclose() 
++dnl with dlopen(), dlsym(), dlclose()
+ if test "$python_ok" = yes && test "$python3_ok" = yes; then
+   AC_DEFINE(DYNAMIC_PYTHON)
+   AC_DEFINE(DYNAMIC_PYTHON3)
+@@ -2210,11 +2210,11 @@
    fi
  fi
  
@@ -16491,12 +16651,12 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
  
  AC_MSG_CHECKING(--enable-gui argument)
  AC_ARG_ENABLE(gui,
-- [  --enable-gui[=OPTS]     X11 GUI [default=auto] [OPTS=auto/no/gtk2/gnome2/gtk3/motif/athena/neXtaw/photon/carbon]], , enable_gui="auto")
-+ [  --enable-gui[=OPTS]     X11 GUI [default=auto] [OPTS=auto/no/gtk2/gnome2/gtk3/motif/athena/neXtaw/photon/carbon/qt]], , enable_gui="auto")
+- [  --enable-gui[=OPTS]       X11 GUI. [default=auto] [OPTS=auto/no/gtk2/gnome2/gtk3/motif/athena/neXtaw/photon/carbon]], , enable_gui="auto")
++ [  --enable-gui[=OPTS]       X11 GUI. [default=auto] [OPTS=auto/no/gtk2/gnome2/gtk3/motif/athena/neXtaw/photon/carbon/qt]], , enable_gui="auto")
  
  dnl Canonicalize the --enable-gui= argument so that it can be easily compared.
  dnl Do not use character classes for portability with old tools.
-@@ -2204,6 +2204,7 @@
+@@ -2230,6 +2230,7 @@
  SKIP_NEXTAW=YES
  SKIP_PHOTON=YES
  SKIP_CARBON=YES
@@ -16504,7 +16664,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
  GUITYPE=NONE
  
  if test "x$QNX" = "xyes" -a "x$with_x" = "xno" ; then
-@@ -2241,7 +2242,8 @@
+@@ -2267,7 +2268,8 @@
  		SKIP_MOTIF=
  		SKIP_ATHENA=
  		SKIP_NEXTAW=
@@ -16514,7 +16674,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
      gtk2)	AC_MSG_RESULT(GTK+ 2.x GUI support)
  		SKIP_GTK2=;;
      gnome2)	AC_MSG_RESULT(GNOME 2.x GUI support)
-@@ -2255,6 +2257,8 @@
+@@ -2281,6 +2283,8 @@
  		SKIP_ATHENA=;;
      nextaw)	AC_MSG_RESULT(neXtaw GUI support)
  		SKIP_NEXTAW=;;
@@ -16523,7 +16683,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
      *)		AC_MSG_RESULT([Sorry, $enable_gui GUI is not supported]) ;;
    esac
  
-@@ -2339,7 +2343,6 @@
+@@ -2365,7 +2369,6 @@
    fi
  fi
  
@@ -16531,7 +16691,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
  if test "x$MACOSX" = "xyes" -a -z "$SKIP_CARBON" -a "x$CARBON" = "xyes"; then
    AC_MSG_CHECKING(for Carbon GUI)
    dnl already did the check, just give the message
-@@ -2370,7 +2373,8 @@
+@@ -2396,7 +2399,8 @@
    SKIP_ATHENA=YES;
    SKIP_NEXTAW=YES;
    SKIP_PHOTON=YES;
@@ -16541,7 +16701,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
  fi
  
  dnl define an autoconf function to check for a specified version of GTK, and
-@@ -2597,6 +2601,7 @@
+@@ -2623,6 +2627,7 @@
        SKIP_ATHENA=YES
        SKIP_NEXTAW=YES
        SKIP_MOTIF=YES
@@ -16549,7 +16709,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
        GUITYPE=GTK
        AC_SUBST(GTK_LIBNAME)
      fi
-@@ -2812,6 +2817,7 @@
+@@ -2833,6 +2838,7 @@
  if test -z "$SKIP_MOTIF"; then
    SKIP_ATHENA=YES
    SKIP_NEXTAW=YES
@@ -16557,7 +16717,7 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
    GUITYPE=MOTIF
    AC_SUBST(MOTIF_LIBNAME)
  fi
-@@ -2913,6 +2919,199 @@
+@@ -2934,6 +2940,199 @@
    CPPFLAGS=$cppflags_save
  fi
  
@@ -16757,10 +16917,39 @@ diff -urN vim-src/src/configure.ac vim-qt-src/src/configure.ac
  
  if test -z "$SKIP_ATHENA" -o -z "$SKIP_NEXTAW" -o -z "$SKIP_MOTIF" -o -z "$SKIP_GTK2" -o -z "$SKIP_GTK3"; then
    dnl Check for X11/xpm.h and X11/Sunkeysym.h with the GUI include path
+@@ -2981,8 +3180,8 @@
+ 	xmheader="Xm/Xm.h"
+   else
+ 	xmheader="Xm/Xm.h Xm/XpmP.h Xm/JoinSideT.h Xm/TraitP.h Xm/Manager.h
+-	   Xm/UnhighlightT.h Xm/Notebook.h"  
+-  fi    
++	   Xm/UnhighlightT.h Xm/Notebook.h"
++  fi
+   AC_CHECK_HEADERS($xmheader)
+ 
+   if test "x$ac_cv_header_Xm_XpmP_h" = "xyes"; then
+@@ -3679,7 +3878,7 @@
+ if test "x$vim_cv_stat_ignores_slash" = "xyes" ; then
+   AC_DEFINE(STAT_IGNORES_SLASH)
+ fi
+-  
++
+ dnl Link with iconv for charset translation, if not found without library.
+ dnl check for iconv() requires including iconv.h
+ dnl Add "-liconv" when possible; Solaris has iconv but use GNU iconv when it
+@@ -4281,7 +4480,7 @@
+   else
+     AC_MSG_RESULT(no)
+   fi
+-  dnl As mentioned above, tiny build implies os_macosx.m isn't needed.  
++  dnl As mentioned above, tiny build implies os_macosx.m isn't needed.
+   dnl Exclude it from OS_EXTRA_SRC so that linker won't complain about
+   dnl missing Objective-C symbols.
+   if test "x$features" = "xtiny"; then
 diff -urN vim-src/src/evalfunc.c vim-qt-src/src/evalfunc.c
---- vim-src/src/evalfunc.c	2016-11-12 20:45:55.115272004 +0100
-+++ vim-qt-src/src/evalfunc.c	2016-11-12 20:45:30.006053904 +0100
-@@ -5635,6 +5635,9 @@
+--- vim-src/src/evalfunc.c	2017-07-19 21:32:47.299142292 +0200
++++ vim-qt-src/src/evalfunc.c	2017-07-19 21:35:27.420387438 +0200
+@@ -5672,6 +5672,9 @@
  #ifdef FEAT_GUI_W32
  	"gui_win32",
  #endif
@@ -16771,9 +16960,9 @@ diff -urN vim-src/src/evalfunc.c vim-qt-src/src/evalfunc.c
  	"hangul_input",
  #endif
 diff -urN vim-src/src/ex_docmd.c vim-qt-src/src/ex_docmd.c
---- vim-src/src/ex_docmd.c	2016-11-12 20:45:55.121272056 +0100
-+++ vim-qt-src/src/ex_docmd.c	2016-11-12 20:45:30.008053922 +0100
-@@ -7745,6 +7745,7 @@
+--- vim-src/src/ex_docmd.c	2017-07-19 21:32:47.306142347 +0200
++++ vim-qt-src/src/ex_docmd.c	2017-07-19 21:35:27.428387500 +0200
+@@ -7916,6 +7916,7 @@
  	|| (defined(FEAT_GUI_GTK) && defined(FEAT_DND)) \
  	|| defined(FEAT_GUI_MSWIN) \
  	|| defined(FEAT_GUI_MAC) \
@@ -16782,8 +16971,8 @@ diff -urN vim-src/src/ex_docmd.c vim-qt-src/src/ex_docmd.c
  
  /*
 diff -urN vim-src/src/feature.h vim-qt-src/src/feature.h
---- vim-src/src/feature.h	2016-11-12 23:01:55.917058442 +0100
-+++ vim-qt-src/src/feature.h	2016-11-12 23:02:11.307197618 +0100
+--- vim-src/src/feature.h	2017-07-19 21:35:56.565613818 +0200
++++ vim-qt-src/src/feature.h	2017-07-19 21:35:57.044617539 +0200
 @@ -40,6 +40,10 @@
   * When +small is used, +tiny is also included.  +normal implies +small, etc.
   */
@@ -16824,9 +17013,9 @@ diff -urN vim-src/src/feature.h vim-qt-src/src/feature.h
  #endif
  
 diff -urN vim-src/src/fileio.c vim-qt-src/src/fileio.c
---- vim-src/src/fileio.c	2016-11-12 19:19:12.223933772 +0100
-+++ vim-qt-src/src/fileio.c	2016-11-12 19:19:43.616238396 +0100
-@@ -6127,6 +6127,7 @@
+--- vim-src/src/fileio.c	2017-07-19 21:32:47.314142409 +0200
++++ vim-qt-src/src/fileio.c	2017-07-19 21:35:27.433387539 +0200
+@@ -6205,6 +6205,7 @@
  #if (defined(FEAT_DND) && defined(FEAT_GUI_GTK)) \
  	|| defined(FEAT_GUI_MSWIN) \
  	|| defined(FEAT_GUI_MAC) \
@@ -16836,12 +17025,12 @@ diff -urN vim-src/src/fileio.c vim-qt-src/src/fileio.c
   * Shorten all filenames in "fnames[count]" by current directory.
 diff -urN vim-src/src/fontdialog.moc vim-qt-src/src/fontdialog.moc
 --- vim-src/src/fontdialog.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/fontdialog.moc	2016-08-27 22:36:05.452794761 +0200
-@@ -0,0 +1,115 @@
++++ vim-qt-src/src/fontdialog.moc	2017-07-19 21:35:27.434387547 +0200
+@@ -0,0 +1,118 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'fontdialog.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -16852,12 +17041,14 @@ diff -urN vim-src/src/fontdialog.moc vim-qt-src/src/fontdialog.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'fontdialog.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_FontDialog_t {
 +    QByteArrayData data[4];
 +    char stringdata0[37];
@@ -16919,7 +17110,7 @@ diff -urN vim-src/src/fontdialog.moc vim-qt-src/src/fontdialog.moc
 +
 +const QMetaObject FontDialog::staticMetaObject = {
 +    { &QDialog::staticMetaObject, qt_meta_stringdata_FontDialog.data,
-+      qt_meta_data_FontDialog,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_FontDialog,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -16930,7 +17121,7 @@ diff -urN vim-src/src/fontdialog.moc vim-qt-src/src/fontdialog.moc
 +
 +void *FontDialog::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_FontDialog.stringdata0))
 +        return static_cast<void*>(const_cast< FontDialog*>(this));
 +    return QDialog::qt_metacast(_clname);
@@ -16952,11 +17143,12 @@ diff -urN vim-src/src/fontdialog.moc vim-qt-src/src/fontdialog.moc
 +    }
 +    return _id;
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/globals.h vim-qt-src/src/globals.h
---- vim-src/src/globals.h	2016-11-12 20:45:55.124272082 +0100
-+++ vim-qt-src/src/globals.h	2016-11-12 20:45:30.011053948 +0100
-@@ -516,7 +516,7 @@
+--- vim-src/src/globals.h	2017-07-19 21:32:47.317142432 +0200
++++ vim-qt-src/src/globals.h	2017-07-19 21:35:27.436387562 +0200
+@@ -519,7 +519,7 @@
  
  #ifdef FEAT_CLIPBOARD
  EXTERN VimClipboard clip_star;	/* PRIMARY selection in X11 */
@@ -16965,7 +17157,7 @@ diff -urN vim-src/src/globals.h vim-qt-src/src/globals.h
  EXTERN VimClipboard clip_plus;	/* CLIPBOARD selection in X11 */
  # else
  #  define clip_plus clip_star	/* there is only one clipboard */
-@@ -1433,7 +1433,7 @@
+@@ -1436,7 +1436,7 @@
  EXTERN char_u e_fontset[]	INIT(= N_("E234: Unknown fontset: %s"));
  #endif
  #if defined(FEAT_GUI_X11) || defined(FEAT_GUI_GTK) || defined(MACOS) \
@@ -16975,8 +17167,8 @@ diff -urN vim-src/src/globals.h vim-qt-src/src/globals.h
  #endif
  #if defined(FEAT_GUI_X11) && !defined(FEAT_GUI_GTK)
 diff -urN vim-src/src/gui.c vim-qt-src/src/gui.c
---- vim-src/src/gui.c	2016-11-12 19:19:12.229933830 +0100
-+++ vim-qt-src/src/gui.c	2016-11-12 19:19:43.619238425 +0100
+--- vim-src/src/gui.c	2017-07-19 21:32:47.318142440 +0200
++++ vim-qt-src/src/gui.c	2017-07-19 21:35:27.437387570 +0200
 @@ -166,10 +166,10 @@
      termcapinit((char_u *)"builtin_gui");
      gui.starting = recursive - 1;
@@ -17008,7 +17200,7 @@ diff -urN vim-src/src/gui.c vim-qt-src/src/gui.c
      /* We can't take the sizes properly into account until anything is
       * realized.  Therefore we recalculate all the values here just before
       * setting the size. (--mdcki) */
-@@ -1561,7 +1561,7 @@
+@@ -1560,7 +1560,7 @@
      if (!gui.shell_created)
  	return;
  
@@ -17017,7 +17209,7 @@ diff -urN vim-src/src/gui.c vim-qt-src/src/gui.c
      /* If not setting to a user specified size and maximized, calculate the
       * number of characters that fit in the maximized window. */
      if (!mustset && gui_mch_maximized())
-@@ -2371,7 +2371,7 @@
+@@ -2370,7 +2370,7 @@
      if (back != 0 && ((draw_flags & DRAW_BOLD) || (highlight_mask & HL_ITALIC)))
  	return FAIL;
  
@@ -17026,7 +17218,7 @@ diff -urN vim-src/src/gui.c vim-qt-src/src/gui.c
      /* If there's no italic font, then fake it.
       * For GTK2, we don't need a different font for italic style. */
      if (hl_mask_todo & HL_ITALIC)
-@@ -5044,7 +5044,7 @@
+@@ -5048,7 +5048,7 @@
  # endif
  #endif
  
@@ -17035,7 +17227,7 @@ diff -urN vim-src/src/gui.c vim-qt-src/src/gui.c
      void
  display_errors(void)
  {
-@@ -5382,6 +5382,7 @@
+@@ -5386,6 +5386,7 @@
  #if (defined(FEAT_DND) && defined(FEAT_GUI_GTK)) \
  	|| defined(FEAT_GUI_MSWIN) \
  	|| defined(FEAT_GUI_MAC) \
@@ -17045,7 +17237,7 @@ diff -urN vim-src/src/gui.c vim-qt-src/src/gui.c
  #ifdef FEAT_WINDOWS
 diff -urN vim-src/src/gui.h vim-qt-src/src/gui.h
 --- vim-src/src/gui.h	2016-11-12 19:19:12.229933830 +0100
-+++ vim-qt-src/src/gui.h	2016-11-12 19:19:43.619238425 +0100
++++ vim-qt-src/src/gui.h	2017-07-19 21:34:44.825056452 +0200
 @@ -62,7 +62,7 @@
   * On some systems scrolling needs to be done right away instead of in the
   * main loop.
@@ -17118,7 +17310,7 @@ diff -urN vim-src/src/gui.h vim-qt-src/src/gui.h
      GuiFontset	menu_fontset;	    /* set of fonts for multi-byte chars */
 diff -urN vim-src/src/gui_qt.cpp vim-qt-src/src/gui_qt.cpp
 --- vim-src/src/gui_qt.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/gui_qt.cpp	2016-08-27 22:36:05.457794761 +0200
++++ vim-qt-src/src/gui_qt.cpp	2017-07-19 21:34:44.834056522 +0200
 @@ -0,0 +1,1776 @@
 +#include <QApplication>
 +#include <QMessageBox>
@@ -18897,9 +19089,9 @@ diff -urN vim-src/src/gui_qt.cpp vim-qt-src/src/gui_qt.cpp
 +
 +} // extern "C"
 diff -urN vim-src/src/main.c vim-qt-src/src/main.c
---- vim-src/src/main.c	2016-11-12 19:19:12.247934006 +0100
-+++ vim-qt-src/src/main.c	2016-11-12 19:19:43.636238589 +0100
-@@ -1712,7 +1712,7 @@
+--- vim-src/src/main.c	2017-07-19 21:32:47.343142635 +0200
++++ vim-qt-src/src/main.c	2017-07-19 21:35:27.457387725 +0200
+@@ -1765,7 +1765,7 @@
      }
  
      /* "gvim" starts the GUI.  Also accept "Gvim" for MS-Windows. */
@@ -18910,12 +19102,12 @@ diff -urN vim-src/src/main.c vim-qt-src/src/main.c
  #ifdef FEAT_GUI
 diff -urN vim-src/src/mainwindow.moc vim-qt-src/src/mainwindow.moc
 --- vim-src/src/mainwindow.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/mainwindow.moc	2016-08-27 22:36:05.458794761 +0200
-@@ -0,0 +1,203 @@
++++ vim-qt-src/src/mainwindow.moc	2017-07-19 21:35:27.457387725 +0200
+@@ -0,0 +1,206 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'mainwindow.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -18926,12 +19118,14 @@ diff -urN vim-src/src/mainwindow.moc vim-qt-src/src/mainwindow.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'mainwindow.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_MainWindow_t {
 +    QByteArrayData data[19];
 +    char stringdata0[181];
@@ -19064,7 +19258,7 @@ diff -urN vim-src/src/mainwindow.moc vim-qt-src/src/mainwindow.moc
 +
 +const QMetaObject MainWindow::staticMetaObject = {
 +    { &QMainWindow::staticMetaObject, qt_meta_stringdata_MainWindow.data,
-+      qt_meta_data_MainWindow,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_MainWindow,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -19075,7 +19269,7 @@ diff -urN vim-src/src/mainwindow.moc vim-qt-src/src/mainwindow.moc
 +
 +void *MainWindow::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_MainWindow.stringdata0))
 +        return static_cast<void*>(const_cast< MainWindow*>(this));
 +    return QMainWindow::qt_metacast(_clname);
@@ -19114,10 +19308,11 @@ diff -urN vim-src/src/mainwindow.moc vim-qt-src/src/mainwindow.moc
 +#endif // QT_NO_PROPERTIES
 +    return _id;
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/menu.c vim-qt-src/src/menu.c
---- vim-src/src/menu.c	2016-11-12 19:19:12.251934045 +0100
-+++ vim-qt-src/src/menu.c	2016-11-12 19:19:43.639238618 +0100
+--- vim-src/src/menu.c	2017-07-19 21:32:47.348142674 +0200
++++ vim-qt-src/src/menu.c	2017-07-19 21:35:27.463387772 +0200
 @@ -100,9 +100,9 @@
      char_u	*arg;
      char_u	*p;
@@ -19149,9 +19344,9 @@ diff -urN vim-src/src/menu.c vim-qt-src/src/menu.c
      if (gui.in_use
  	    && (gui.menu_height != old_menu_height
 diff -urN vim-src/src/message.c vim-qt-src/src/message.c
---- vim-src/src/message.c	2016-11-12 20:45:55.152272325 +0100
-+++ vim-qt-src/src/message.c	2016-11-12 20:45:30.018054008 +0100
-@@ -3917,7 +3917,7 @@
+--- vim-src/src/message.c	2017-07-19 21:32:47.350142689 +0200
++++ vim-qt-src/src/message.c	2017-07-19 21:35:27.464387780 +0200
+@@ -4018,7 +4018,7 @@
  	    filter = BROWSE_FILTER_DEFAULT;
  	if (flags & BROWSE_DIR)
  	{
@@ -19160,7 +19355,7 @@ diff -urN vim-src/src/message.c vim-qt-src/src/message.c
  	    /* For systems that have a directory dialog. */
  	    fname = gui_mch_browsedir(title, initdir);
  #  else
-@@ -3925,7 +3925,7 @@
+@@ -4026,7 +4026,7 @@
  	     * remove the file name. */
  	    fname = gui_mch_browse(0, title, dflt, ext, initdir, (char_u *)"");
  #  endif
@@ -19170,9 +19365,9 @@ diff -urN vim-src/src/message.c vim-qt-src/src/message.c
  	     * name.  GTK+ 2 returns only the directory, */
  	    if (fname != NULL && *fname != NUL && !mch_isdir(fname))
 diff -urN vim-src/src/normal.c vim-qt-src/src/normal.c
---- vim-src/src/normal.c	2016-11-12 20:45:55.158272377 +0100
-+++ vim-qt-src/src/normal.c	2016-11-12 20:45:30.020054026 +0100
-@@ -2643,7 +2643,7 @@
+--- vim-src/src/normal.c	2017-07-19 21:32:47.358142752 +0200
++++ vim-qt-src/src/normal.c	2017-07-19 21:35:27.471387834 +0200
+@@ -2648,7 +2648,7 @@
  	     * Windows only shows the popup menu on the button up event.
  	     */
  #if defined(FEAT_GUI_MOTIF) || defined(FEAT_GUI_GTK) \
@@ -19181,7 +19376,7 @@ diff -urN vim-src/src/normal.c vim-qt-src/src/normal.c
  	    if (!is_click)
  		return FALSE;
  #endif
-@@ -2653,7 +2653,7 @@
+@@ -2658,7 +2658,7 @@
  #endif
  #if defined(FEAT_GUI_MOTIF) || defined(FEAT_GUI_GTK) \
  	    || defined(FEAT_GUI_ATHENA) || defined(FEAT_GUI_MSWIN) \
@@ -19191,8 +19386,8 @@ diff -urN vim-src/src/normal.c vim-qt-src/src/normal.c
  	    {
  		jump_flags = 0;
 diff -urN vim-src/src/ops.c vim-qt-src/src/ops.c
---- vim-src/src/ops.c	2016-11-12 19:19:12.258934114 +0100
-+++ vim-qt-src/src/ops.c	2016-11-12 19:19:43.645238676 +0100
+--- vim-src/src/ops.c	2017-07-19 21:32:47.359142759 +0200
++++ vim-qt-src/src/ops.c	2017-07-19 21:35:27.473387850 +0200
 @@ -29,7 +29,7 @@
  #define DELETION_REGISTER	36
  #ifdef FEAT_CLIPBOARD
@@ -19202,7 +19397,7 @@ diff -urN vim-src/src/ops.c vim-qt-src/src/ops.c
  #   define PLUS_REGISTER	38
  #  else
  #   define PLUS_REGISTER	STAR_REGISTER	    /* there is only one */
-@@ -2926,7 +2926,7 @@
+@@ -2937,7 +2937,7 @@
      char_u		*p;
      char_u		*pnew;
      struct block_def	bd;
@@ -19211,7 +19406,7 @@ diff -urN vim-src/src/ops.c vim-qt-src/src/ops.c
      int			did_star = FALSE;
  #endif
  
-@@ -3200,12 +3200,12 @@
+@@ -3221,12 +3221,12 @@
  
  	clip_own_selection(&clip_star);
  	clip_gen_set_selection(&clip_star);
@@ -19227,9 +19422,9 @@ diff -urN vim-src/src/ops.c vim-qt-src/src/ops.c
       * If we were yanking to the '+' register, send result to selection.
       * Also copy to the '*' register, in case auto-select is off.
 diff -urN vim-src/src/option.c vim-qt-src/src/option.c
---- vim-src/src/option.c	2016-11-12 20:45:55.160272395 +0100
-+++ vim-qt-src/src/option.c	2016-11-12 20:45:30.021054035 +0100
-@@ -1267,6 +1267,28 @@
+--- vim-src/src/option.c	2017-07-19 21:32:47.362142783 +0200
++++ vim-qt-src/src/option.c	2017-07-19 21:35:27.478387888 +0200
+@@ -1370,6 +1370,28 @@
  			    {(char_u *)FALSE, (char_u *)0L}
  #endif
  			    SCRIPTID_INIT},
@@ -19258,7 +19453,7 @@ diff -urN vim-src/src/option.c vim-qt-src/src/option.c
      {"gdefault",    "gd",   P_BOOL|P_VI_DEF|P_VIM,
  			    (char_u *)&p_gd, PV_NONE,
  			    {(char_u *)FALSE, (char_u *)0L} SCRIPTID_INIT},
-@@ -6631,7 +6653,7 @@
+@@ -6848,7 +6870,7 @@
  	if (gui.in_use)
  	{
  	    p = p_guifont;
@@ -19267,7 +19462,7 @@ diff -urN vim-src/src/option.c vim-qt-src/src/option.c
  	    /*
  	     * Put up a font dialog and let the user select a new value.
  	     * If this is cancelled go back to the old value but don't
-@@ -7184,6 +7206,14 @@
+@@ -7402,6 +7424,14 @@
      }
  #endif
  
@@ -19282,7 +19477,7 @@ diff -urN vim-src/src/option.c vim-qt-src/src/option.c
  #ifdef FEAT_VIRTUALEDIT
      /* 'virtualedit' */
      else if (varp == &p_ve)
-@@ -8140,6 +8170,18 @@
+@@ -8369,6 +8399,18 @@
  	set_fileformat(curbuf->b_p_tx ? EOL_DOS : EOL_UNIX, opt_flags);
      }
  
@@ -19301,7 +19496,7 @@ diff -urN vim-src/src/option.c vim-qt-src/src/option.c
      /* when 'textauto' is set or reset also change 'fileformats' */
      else if ((int *)varp == &p_ta)
  	set_string_option_direct((char_u *)"ffs", -1,
-@@ -8235,7 +8277,7 @@
+@@ -8464,7 +8506,7 @@
  	p_wiv = (*T_XS != NUL);
      }
  
@@ -19311,8 +19506,8 @@ diff -urN vim-src/src/option.c vim-qt-src/src/option.c
      {
  	if (p_beval && !old_value)
 diff -urN vim-src/src/option.h vim-qt-src/src/option.h
---- vim-src/src/option.h	2016-11-12 19:19:12.263934162 +0100
-+++ vim-qt-src/src/option.h	2016-11-12 19:19:43.647238696 +0100
+--- vim-src/src/option.h	2017-07-19 21:32:47.364142798 +0200
++++ vim-qt-src/src/option.h	2017-07-19 21:35:27.479387896 +0200
 @@ -508,6 +508,10 @@
  #ifdef HAVE_FSYNC
  EXTERN int	p_fs;		/* 'fsync' */
@@ -19325,8 +19520,8 @@ diff -urN vim-src/src/option.h vim-qt-src/src/option.h
  #ifdef FEAT_PRINTER
  EXTERN char_u	*p_pdev;	/* 'printdevice' */
 diff -urN vim-src/src/os_mswin.c vim-qt-src/src/os_mswin.c
---- vim-src/src/os_mswin.c	2016-11-12 20:45:55.160272395 +0100
-+++ vim-qt-src/src/os_mswin.c	2016-11-12 20:45:30.022054044 +0100
+--- vim-src/src/os_mswin.c	2017-07-19 21:32:47.365142806 +0200
++++ vim-qt-src/src/os_mswin.c	2017-07-19 21:35:27.480387904 +0200
 @@ -130,7 +130,7 @@
  extern char g_szOrigTitle[];
  #endif
@@ -19337,9 +19532,9 @@ diff -urN vim-src/src/os_mswin.c vim-qt-src/src/os_mswin.c
  #else
  static HWND s_hwnd = 0;	    /* console window handle, set by GetConsoleHwnd() */
 diff -urN vim-src/src/os_unix.c vim-qt-src/src/os_unix.c
---- vim-src/src/os_unix.c	2016-11-12 23:01:38.109897414 +0100
-+++ vim-qt-src/src/os_unix.c	2016-11-12 23:01:44.530955478 +0100
-@@ -2172,7 +2172,7 @@
+--- vim-src/src/os_unix.c	2017-07-19 21:32:47.367142822 +0200
++++ vim-qt-src/src/os_unix.c	2017-07-19 21:35:27.481387912 +0200
+@@ -2165,7 +2165,7 @@
      if (get_x11_windis() == OK)
  	type = 1;
  #else
@@ -19348,7 +19543,7 @@ diff -urN vim-src/src/os_unix.c vim-qt-src/src/os_unix.c
      if (gui.in_use)
  	type = 1;
  # endif
-@@ -2184,6 +2184,7 @@
+@@ -2177,6 +2177,7 @@
       */
      if ((type || *T_TS != NUL) && title != NULL)
      {
@@ -19356,7 +19551,7 @@ diff -urN vim-src/src/os_unix.c vim-qt-src/src/os_unix.c
  	if (oldtitle == NULL
  #ifdef FEAT_GUI
  		&& !gui.in_use
-@@ -2201,7 +2202,7 @@
+@@ -2194,7 +2195,7 @@
  	    set_x11_title(title);		/* x11 */
  #endif
  #if defined(FEAT_GUI_GTK) \
@@ -19366,10 +19561,10 @@ diff -urN vim-src/src/os_unix.c vim-qt-src/src/os_unix.c
  	    gui_mch_settitle(title, icon);
  #endif
 diff -urN vim-src/src/os_win32.c vim-qt-src/src/os_win32.c
---- vim-src/src/os_win32.c	2016-11-12 20:45:55.163272421 +0100
-+++ vim-qt-src/src/os_win32.c	2016-11-12 20:45:30.024054061 +0100
-@@ -1938,9 +1938,9 @@
-     if (!executable_exists("findstr.exe", NULL))
+--- vim-src/src/os_win32.c	2017-07-19 21:32:47.370142845 +0200
++++ vim-qt-src/src/os_win32.c	2017-07-19 21:35:27.483387927 +0200
+@@ -2074,9 +2074,9 @@
+     if (!executable_exists("findstr.exe", NULL, TRUE))
  	set_option_value((char_u *)"grepprg", 0, (char_u *)"grep -n", 0);
  
 -#ifdef FEAT_CLIPBOARD
@@ -19380,7 +19575,7 @@ diff -urN vim-src/src/os_win32.c vim-qt-src/src/os_win32.c
  }
  
  
-@@ -2414,9 +2414,9 @@
+@@ -2550,9 +2550,9 @@
      g_fMouseAvail = GetSystemMetrics(SM_MOUSEPRESENT);
  #endif
  
@@ -19394,7 +19589,7 @@ diff -urN vim-src/src/os_win32.c vim-qt-src/src/os_win32.c
  /*
 diff -urN vim-src/src/pathdef.cmake.in vim-qt-src/src/pathdef.cmake.in
 --- vim-src/src/pathdef.cmake.in	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/pathdef.cmake.in	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/pathdef.cmake.in	2017-07-19 21:34:44.885056919 +0200
 @@ -0,0 +1,7 @@
 +#include "vim.h"
 +char_u *default_vim_dir = (char_u *)"${CMAKE_INSTALL_PREFIX}/share/vim/current";
@@ -19405,7 +19600,7 @@ diff -urN vim-src/src/pathdef.cmake.in vim-qt-src/src/pathdef.cmake.in
 +char_u *compiled_sys = (char_u *)"${SITE_NAME}";
 diff -urN vim-src/src/proto/gui_qt.pro vim-qt-src/src/proto/gui_qt.pro
 --- vim-src/src/proto/gui_qt.pro	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/proto/gui_qt.pro	2016-08-27 22:36:05.469794759 +0200
++++ vim-qt-src/src/proto/gui_qt.pro	2017-07-19 21:34:44.937057323 +0200
 @@ -0,0 +1,85 @@
 +
 +/* Prototypes - I am probably missing something here */
@@ -19493,9 +19688,9 @@ diff -urN vim-src/src/proto/gui_qt.pro vim-qt-src/src/proto/gui_qt.pro
 +void gui_mch_update_fuoptions (char_u *optstr);
 +
 diff -urN vim-src/src/proto.h vim-qt-src/src/proto.h
---- vim-src/src/proto.h	2016-11-12 19:19:12.307934591 +0100
-+++ vim-qt-src/src/proto.h	2016-11-12 19:19:43.691239120 +0100
-@@ -248,6 +248,9 @@
+--- vim-src/src/proto.h	2017-07-19 21:32:47.413143180 +0200
++++ vim-qt-src/src/proto.h	2017-07-19 21:35:27.521388222 +0200
+@@ -252,6 +252,9 @@
  #  ifdef FEAT_SUN_WORKSHOP
  #   include "workshop.pro"
  #  endif
@@ -19507,7 +19702,7 @@ diff -urN vim-src/src/proto.h vim-qt-src/src/proto.h
  # ifdef FEAT_OLE
 diff -urN vim-src/src/qt/colortable.cpp vim-qt-src/src/qt/colortable.cpp
 --- vim-src/src/qt/colortable.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/colortable.cpp	2016-11-12 19:19:43.692239130 +0100
++++ vim-qt-src/src/qt/colortable.cpp	2017-07-19 21:34:44.941057354 +0200
 @@ -0,0 +1,697 @@
 +#include "colortable.h"
 +
@@ -20208,7 +20403,7 @@ diff -urN vim-src/src/qt/colortable.cpp vim-qt-src/src/qt/colortable.cpp
 +
 diff -urN vim-src/src/qt/colortable.h vim-qt-src/src/qt/colortable.h
 --- vim-src/src/qt/colortable.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/colortable.h	2016-11-12 19:19:43.692239130 +0100
++++ vim-qt-src/src/qt/colortable.h	2017-07-19 21:34:44.944057377 +0200
 @@ -0,0 +1,20 @@
 +#ifndef VIM_QT_COLORTABLE
 +#define VIM_QT_COLORTABLE
@@ -20232,7 +20427,7 @@ diff -urN vim-src/src/qt/colortable.h vim-qt-src/src/qt/colortable.h
 +#endif
 diff -urN vim-src/src/qt/fontdialog.cpp vim-qt-src/src/qt/fontdialog.cpp
 --- vim-src/src/qt/fontdialog.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/fontdialog.cpp	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/fontdialog.cpp	2017-07-19 21:34:44.944057377 +0200
 @@ -0,0 +1,226 @@
 +#include "fontdialog.moc"
 +
@@ -20462,7 +20657,7 @@ diff -urN vim-src/src/qt/fontdialog.cpp vim-qt-src/src/qt/fontdialog.cpp
 +
 diff -urN vim-src/src/qt/fontdialog.h vim-qt-src/src/qt/fontdialog.h
 --- vim-src/src/qt/fontdialog.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/fontdialog.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/fontdialog.h	2017-07-19 21:34:44.944057377 +0200
 @@ -0,0 +1,48 @@
 +#ifndef __VIM_QT_FONTDIALOG__
 +#define __VIM_QT_FONTDIALOG__
@@ -20512,41 +20707,41 @@ diff -urN vim-src/src/qt/fontdialog.h vim-qt-src/src/qt/fontdialog.h
 +};
 +
 +#endif
-Binary files vim-src/src/qt/icons/document-new.png and vim-qt-src/src/qt/icons/document-new.png differ
-Binary files vim-src/src/qt/icons/document-open.png and vim-qt-src/src/qt/icons/document-open.png differ
-Binary files vim-src/src/qt/icons/document-print.png and vim-qt-src/src/qt/icons/document-print.png differ
-Binary files vim-src/src/qt/icons/document-save-all.png and vim-qt-src/src/qt/icons/document-save-all.png differ
-Binary files vim-src/src/qt/icons/document-save-as.png and vim-qt-src/src/qt/icons/document-save-as.png differ
-Binary files vim-src/src/qt/icons/document-save.png and vim-qt-src/src/qt/icons/document-save.png differ
-Binary files vim-src/src/qt/icons/edit-copy.png and vim-qt-src/src/qt/icons/edit-copy.png differ
-Binary files vim-src/src/qt/icons/edit-cut.png and vim-qt-src/src/qt/icons/edit-cut.png differ
-Binary files vim-src/src/qt/icons/edit-find-replace.png and vim-qt-src/src/qt/icons/edit-find-replace.png differ
-Binary files vim-src/src/qt/icons/edit-find.png and vim-qt-src/src/qt/icons/edit-find.png differ
-Binary files vim-src/src/qt/icons/edit-paste.png and vim-qt-src/src/qt/icons/edit-paste.png differ
-Binary files vim-src/src/qt/icons/edit-redo.png and vim-qt-src/src/qt/icons/edit-redo.png differ
-Binary files vim-src/src/qt/icons/edit-undo.png and vim-qt-src/src/qt/icons/edit-undo.png differ
-Binary files vim-src/src/qt/icons/folder-new.png and vim-qt-src/src/qt/icons/folder-new.png differ
-Binary files vim-src/src/qt/icons/folder-open.png and vim-qt-src/src/qt/icons/folder-open.png differ
-Binary files vim-src/src/qt/icons/go-jump.png and vim-qt-src/src/qt/icons/go-jump.png differ
-Binary files vim-src/src/qt/icons/go-next.png and vim-qt-src/src/qt/icons/go-next.png differ
-Binary files vim-src/src/qt/icons/go-previous.png and vim-qt-src/src/qt/icons/go-previous.png differ
-Binary files vim-src/src/qt/icons/help-contents.png and vim-qt-src/src/qt/icons/help-contents.png differ
-Binary files vim-src/src/qt/icons/help-faq.png and vim-qt-src/src/qt/icons/help-faq.png differ
-Binary files vim-src/src/qt/icons/run-build-clean.png and vim-qt-src/src/qt/icons/run-build-clean.png differ
-Binary files vim-src/src/qt/icons/run-build.png and vim-qt-src/src/qt/icons/run-build.png differ
-Binary files vim-src/src/qt/icons/system-run.png and vim-qt-src/src/qt/icons/system-run.png differ
-Binary files vim-src/src/qt/icons/tab-new.png and vim-qt-src/src/qt/icons/tab-new.png differ
-Binary files vim-src/src/qt/icons/table.png and vim-qt-src/src/qt/icons/table.png differ
-Binary files vim-src/src/qt/icons/utilities-terminal.png and vim-qt-src/src/qt/icons/utilities-terminal.png differ
-Binary files vim-src/src/qt/icons/view-split-left-right.png and vim-qt-src/src/qt/icons/view-split-left-right.png differ
-Binary files vim-src/src/qt/icons/view-split-top-bottom.png and vim-qt-src/src/qt/icons/view-split-top-bottom.png differ
-Binary files vim-src/src/qt/icons/vim-qt.png and vim-qt-src/src/qt/icons/vim-qt.png differ
-Binary files vim-src/src/qt/icons/window-close.png and vim-qt-src/src/qt/icons/window-close.png differ
-Binary files vim-src/src/qt/icons/zoom-fit-height.png and vim-qt-src/src/qt/icons/zoom-fit-height.png differ
-Binary files vim-src/src/qt/icons/zoom-fit-width.png and vim-qt-src/src/qt/icons/zoom-fit-width.png differ
+Binaire bestanden vim-src/src/qt/icons/document-new.png en vim-qt-src/src/qt/icons/document-new.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/document-open.png en vim-qt-src/src/qt/icons/document-open.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/document-print.png en vim-qt-src/src/qt/icons/document-print.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/document-save-all.png en vim-qt-src/src/qt/icons/document-save-all.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/document-save-as.png en vim-qt-src/src/qt/icons/document-save-as.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/document-save.png en vim-qt-src/src/qt/icons/document-save.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-copy.png en vim-qt-src/src/qt/icons/edit-copy.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-cut.png en vim-qt-src/src/qt/icons/edit-cut.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-find-replace.png en vim-qt-src/src/qt/icons/edit-find-replace.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-find.png en vim-qt-src/src/qt/icons/edit-find.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-paste.png en vim-qt-src/src/qt/icons/edit-paste.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-redo.png en vim-qt-src/src/qt/icons/edit-redo.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/edit-undo.png en vim-qt-src/src/qt/icons/edit-undo.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/folder-new.png en vim-qt-src/src/qt/icons/folder-new.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/folder-open.png en vim-qt-src/src/qt/icons/folder-open.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/go-jump.png en vim-qt-src/src/qt/icons/go-jump.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/go-next.png en vim-qt-src/src/qt/icons/go-next.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/go-previous.png en vim-qt-src/src/qt/icons/go-previous.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/help-contents.png en vim-qt-src/src/qt/icons/help-contents.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/help-faq.png en vim-qt-src/src/qt/icons/help-faq.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/run-build-clean.png en vim-qt-src/src/qt/icons/run-build-clean.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/run-build.png en vim-qt-src/src/qt/icons/run-build.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/system-run.png en vim-qt-src/src/qt/icons/system-run.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/tab-new.png en vim-qt-src/src/qt/icons/tab-new.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/table.png en vim-qt-src/src/qt/icons/table.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/utilities-terminal.png en vim-qt-src/src/qt/icons/utilities-terminal.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/view-split-left-right.png en vim-qt-src/src/qt/icons/view-split-left-right.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/view-split-top-bottom.png en vim-qt-src/src/qt/icons/view-split-top-bottom.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/vim-qt.png en vim-qt-src/src/qt/icons/vim-qt.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/window-close.png en vim-qt-src/src/qt/icons/window-close.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/zoom-fit-height.png en vim-qt-src/src/qt/icons/zoom-fit-height.png zijn verschillend
+Binaire bestanden vim-src/src/qt/icons/zoom-fit-width.png en vim-qt-src/src/qt/icons/zoom-fit-width.png zijn verschillend
 diff -urN vim-src/src/qt/icons.qrc vim-qt-src/src/qt/icons.qrc
 --- vim-src/src/qt/icons.qrc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/icons.qrc	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/icons.qrc	2017-07-19 21:34:44.944057377 +0200
 @@ -0,0 +1,36 @@
 + <!DOCTYPE RCC><RCC version="1.0">
 + <qresource>
@@ -20586,7 +20781,7 @@ diff -urN vim-src/src/qt/icons.qrc vim-qt-src/src/qt/icons.qrc
 + </RCC>
 diff -urN vim-src/src/qt/mainwindow.cpp vim-qt-src/src/qt/mainwindow.cpp
 --- vim-src/src/qt/mainwindow.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/mainwindow.cpp	2016-11-12 19:19:43.693239140 +0100
++++ vim-qt-src/src/qt/mainwindow.cpp	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,226 @@
 +#include "mainwindow.moc"
 +
@@ -20816,7 +21011,7 @@ diff -urN vim-src/src/qt/mainwindow.cpp vim-qt-src/src/qt/mainwindow.cpp
 +
 diff -urN vim-src/src/qt/mainwindow.h vim-qt-src/src/qt/mainwindow.h
 --- vim-src/src/qt/mainwindow.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/mainwindow.h	2016-11-12 19:19:43.693239140 +0100
++++ vim-qt-src/src/qt/mainwindow.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,57 @@
 +#ifndef __GUI_QT_MAINWINDOW__
 +#define __GUI_QT_MAINWINDOW__
@@ -20877,7 +21072,7 @@ diff -urN vim-src/src/qt/mainwindow.h vim-qt-src/src/qt/mainwindow.h
 +#endif
 diff -urN vim-src/src/qt/qt_features.h vim-qt-src/src/qt/qt_features.h
 --- vim-src/src/qt/qt_features.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/qt_features.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/qt_features.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,20 @@
 +
 +//
@@ -20901,7 +21096,7 @@ diff -urN vim-src/src/qt/qt_features.h vim-qt-src/src/qt/qt_features.h
 +
 diff -urN vim-src/src/qt/qvimshell.cpp vim-qt-src/src/qt/qvimshell.cpp
 --- vim-src/src/qt/qvimshell.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/qvimshell.cpp	2016-07-09 16:21:27.603321069 +0200
++++ vim-qt-src/src/qt/qvimshell.cpp	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,755 @@
 +#include "qvimshell.moc"
 +
@@ -21660,7 +21855,7 @@ diff -urN vim-src/src/qt/qvimshell.cpp vim-qt-src/src/qt/qvimshell.cpp
 +}
 diff -urN vim-src/src/qt/qvimshell.h vim-qt-src/src/qt/qvimshell.h
 --- vim-src/src/qt/qvimshell.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/qvimshell.h	2016-07-09 16:21:27.603321069 +0200
++++ vim-qt-src/src/qt/qvimshell.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,188 @@
 +#ifndef __QVIMSHELL__
 +#define __QVIMSHELL__
@@ -21852,7 +22047,7 @@ diff -urN vim-src/src/qt/qvimshell.h vim-qt-src/src/qt/qvimshell.h
 +#endif
 diff -urN vim-src/src/qt/scrollarea.cpp vim-qt-src/src/qt/scrollarea.cpp
 --- vim-src/src/qt/scrollarea.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/scrollarea.cpp	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/scrollarea.cpp	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,32 @@
 +#include "scrollarea.moc"
 +
@@ -21888,7 +22083,7 @@ diff -urN vim-src/src/qt/scrollarea.cpp vim-qt-src/src/qt/scrollarea.cpp
 +
 diff -urN vim-src/src/qt/scrollarea.h vim-qt-src/src/qt/scrollarea.h
 --- vim-src/src/qt/scrollarea.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/scrollarea.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/scrollarea.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,23 @@
 +#ifndef VIM_GUI_QT_SCROLLAREA
 +#define VIM_GUI_QT_SCROLLAREA
@@ -21915,7 +22110,7 @@ diff -urN vim-src/src/qt/scrollarea.h vim-qt-src/src/qt/scrollarea.h
 +#endif
 diff -urN vim-src/src/qt/tabbar.cpp vim-qt-src/src/qt/tabbar.cpp
 --- vim-src/src/qt/tabbar.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/tabbar.cpp	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/tabbar.cpp	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,23 @@
 +#include "tabbar.moc"
 +
@@ -21942,7 +22137,7 @@ diff -urN vim-src/src/qt/tabbar.cpp vim-qt-src/src/qt/tabbar.cpp
 +
 diff -urN vim-src/src/qt/tabbar.h vim-qt-src/src/qt/tabbar.h
 --- vim-src/src/qt/tabbar.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/tabbar.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/tabbar.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,17 @@
 +#ifndef __GUI_QT_TABBAR__
 +#define __GUI_QT_TABBAR__
@@ -21963,7 +22158,7 @@ diff -urN vim-src/src/qt/tabbar.h vim-qt-src/src/qt/tabbar.h
 +#endif
 diff -urN vim-src/src/qt/vimaction.cpp vim-qt-src/src/qt/vimaction.cpp
 --- vim-src/src/qt/vimaction.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimaction.cpp	2016-11-12 19:19:43.693239140 +0100
++++ vim-qt-src/src/qt/vimaction.cpp	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,60 @@
 +#include "vimaction.moc"
 +
@@ -22027,7 +22222,7 @@ diff -urN vim-src/src/qt/vimaction.cpp vim-qt-src/src/qt/vimaction.cpp
 +}
 diff -urN vim-src/src/qt/vimaction.h vim-qt-src/src/qt/vimaction.h
 --- vim-src/src/qt/vimaction.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimaction.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/vimaction.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,21 @@
 +#ifndef __GUI_QT_VIMACTION__
 +#define __GUI_QT_VIMACTION__
@@ -22052,7 +22247,7 @@ diff -urN vim-src/src/qt/vimaction.h vim-qt-src/src/qt/vimaction.h
 +#endif
 diff -urN vim-src/src/qt/vimevents.cpp vim-qt-src/src/qt/vimevents.cpp
 --- vim-src/src/qt/vimevents.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimevents.cpp	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/vimevents.cpp	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,38 @@
 +#include "vimevents.h"
 +#include "vimwrapper.h"
@@ -22094,7 +22289,7 @@ diff -urN vim-src/src/qt/vimevents.cpp vim-qt-src/src/qt/vimevents.cpp
 +
 diff -urN vim-src/src/qt/vimevents.h vim-qt-src/src/qt/vimevents.h
 --- vim-src/src/qt/vimevents.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimevents.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/vimevents.h	2017-07-19 21:34:44.946057393 +0200
 @@ -0,0 +1,51 @@
 +#ifndef VIM_QT_VIMEVENT
 +#define VIM_QT_VIMEVENT
@@ -22149,7 +22344,7 @@ diff -urN vim-src/src/qt/vimevents.h vim-qt-src/src/qt/vimevents.h
 +#endif
 diff -urN vim-src/src/qt/vimscrollbar.cpp vim-qt-src/src/qt/vimscrollbar.cpp
 --- vim-src/src/qt/vimscrollbar.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimscrollbar.cpp	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/vimscrollbar.cpp	2017-07-19 21:34:44.947057400 +0200
 @@ -0,0 +1,63 @@
 +#include "vimscrollbar.moc"
 +
@@ -22216,7 +22411,7 @@ diff -urN vim-src/src/qt/vimscrollbar.cpp vim-qt-src/src/qt/vimscrollbar.cpp
 +
 diff -urN vim-src/src/qt/vimscrollbar.h vim-qt-src/src/qt/vimscrollbar.h
 --- vim-src/src/qt/vimscrollbar.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimscrollbar.h	2016-06-08 06:39:27.000000000 +0200
++++ vim-qt-src/src/qt/vimscrollbar.h	2017-07-19 21:34:44.947057400 +0200
 @@ -0,0 +1,35 @@
 +#ifndef __GUI_QT_VIMSCROLLBAR__
 +#define __GUI_QT_VIMSCROLLBAR__
@@ -22255,7 +22450,7 @@ diff -urN vim-src/src/qt/vimscrollbar.h vim-qt-src/src/qt/vimscrollbar.h
 +#endif
 diff -urN vim-src/src/qt/vimwrapper.cpp vim-qt-src/src/qt/vimwrapper.cpp
 --- vim-src/src/qt/vimwrapper.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimwrapper.cpp	2016-11-12 19:19:43.693239140 +0100
++++ vim-qt-src/src/qt/vimwrapper.cpp	2017-07-19 21:34:44.947057400 +0200
 @@ -0,0 +1,435 @@
 +#include <QApplication>
 +#include <QStyle>
@@ -22694,7 +22889,7 @@ diff -urN vim-src/src/qt/vimwrapper.cpp vim-qt-src/src/qt/vimwrapper.cpp
 +
 diff -urN vim-src/src/qt/vimwrapper.h vim-qt-src/src/qt/vimwrapper.h
 --- vim-src/src/qt/vimwrapper.h	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qt/vimwrapper.h	2016-11-12 19:19:43.693239140 +0100
++++ vim-qt-src/src/qt/vimwrapper.h	2017-07-19 21:34:44.947057400 +0200
 @@ -0,0 +1,114 @@
 +#ifndef __VIM_QT_VIM__
 +#define __VIM_QT_VIM__
@@ -22812,12 +23007,12 @@ diff -urN vim-src/src/qt/vimwrapper.h vim-qt-src/src/qt/vimwrapper.h
 +#endif
 diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 --- vim-src/src/qtresources.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qtresources.cpp	2016-11-12 19:19:43.694239149 +0100
-@@ -0,0 +1,3477 @@
++++ vim-qt-src/src/qtresources.cpp	2017-07-19 21:35:27.524388246 +0200
+@@ -0,0 +1,3511 @@
 +/****************************************************************************
 +** Resource object code
 +**
-+** Created by: The Resource Compiler for Qt version 5.7.0
++** Created by: The Resource Compiler for Qt version 5.9.1
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -23216,7 +23411,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0x74,0xb4,0x72,0xd0,0xfe,0x98,0x8c,0x4a,0x30,0xd5,0x74,0xa9,0xf1,0xc9,0x96,0xba,
 +  0x33,0xa5,0x8c,0x99,0xf,0xe8,0xe4,0x77,0x71,0x7,0xf0,0xf,0xbf,0x46,0x34,0x5d,
 +  0xfd,0x18,0x88,0xd1,0x0,0x0,0x0,0x0,0x49,0x45,0x4e,0x44,0xae,0x42,0x60,0x82,
-+
++  
 +    // /home/ike/devel/vim-qt/src/qt/icons/document-new.png
 +  0x0,0x0,0x5,0x82,
 +  0x89,
@@ -23526,7 +23721,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0x4,0x69,0x8d,0x1,0x80,0x6d,0x29,0xd9,0x84,0xec,0x26,0xa9,0xfb,0xc7,0x2b,0x5a,
 +  0x64,0x8b,0x80,0x54,0xd8,0x96,0xb6,0xeb,0x90,0xff,0xa0,0x6f,0x30,0x7a,0x60,0xb0,
 +  0x55,0x64,0xbb,0xaf,0x0,0x0,0x0,0x0,0x49,0x45,0x4e,0x44,0xae,0x42,0x60,0x82,
-+
++  
 +    // /home/ike/devel/vim-qt/src/qt/icons/vim-qt.png
 +  0x0,0x0,0x11,0x17,
 +  0x89,
@@ -25046,7 +25241,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0xd1,0xd6,0xe,0x91,0x87,0x48,0xc1,0x35,0xdc,0xbc,0xa1,0xab,0xab,0x2b,0xa0,0x26,
 +  0xfe,0xf,0x8a,0xc,0x8d,0x8c,0x16,0xe9,0x7c,0x5f,0xf0,0x1f,0x30,0x1f,0x6,0xab,
 +  0x8e,0x52,0x17,0x9e,0x0,0x0,0x0,0x0,0x49,0x45,0x4e,0x44,0xae,0x42,0x60,0x82,
-+
++  
 +    // /home/ike/devel/vim-qt/src/qt/icons/run-build-clean.png
 +  0x0,0x0,0x9,0xb9,
 +  0x89,
@@ -25988,7 +26183,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0x89,0x6e,0xfc,0x79,0xc3,0x50,0x35,0x4a,0xa7,0xa5,0xfa,0x7f,0x7d,0x3,0x4f,0x37,
 +  0x75,0x5e,0xaf,0x70,0x96,0x89,0x0,0x0,0x0,0x0,0x49,0x45,0x4e,0x44,0xae,0x42,
 +  0x60,0x82,
-+
++  
 +};
 +
 +static const unsigned char qt_resource_name[] = {
@@ -26017,7 +26212,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0xf,0xe3,0xd5,0x67,
 +  0x0,0x64,
 +  0x0,0x6f,0x0,0x63,0x0,0x75,0x0,0x6d,0x0,0x65,0x0,0x6e,0x0,0x74,0x0,0x2d,0x0,0x73,0x0,0x61,0x0,0x76,0x0,0x65,0x0,0x2e,0x0,0x70,0x0,0x6e,0x0,0x67,
-+
++  
 +    // go-next.png
 +  0x0,0xb,
 +  0xc,0x2b,0x1f,0xc7,
@@ -26070,7 +26265,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0x1,0xa6,0xc4,0x87,
 +  0x0,0x64,
 +  0x0,0x6f,0x0,0x63,0x0,0x75,0x0,0x6d,0x0,0x65,0x0,0x6e,0x0,0x74,0x0,0x2d,0x0,0x6f,0x0,0x70,0x0,0x65,0x0,0x6e,0x0,0x2e,0x0,0x70,0x0,0x6e,0x0,0x67,
-+
++  
 +    // table.png
 +  0x0,0x9,
 +  0x9,0x28,0xa3,0xa7,
@@ -26086,7 +26281,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0x3,0x45,0xee,0x87,
 +  0x0,0x68,
 +  0x0,0x65,0x0,0x6c,0x0,0x70,0x0,0x2d,0x0,0x63,0x0,0x6f,0x0,0x6e,0x0,0x74,0x0,0x65,0x0,0x6e,0x0,0x74,0x0,0x73,0x0,0x2e,0x0,0x70,0x0,0x6e,0x0,0x67,
-+
++  
 +    // zoom-fit-width.png
 +  0x0,0x12,
 +  0x1,0xfc,0x4c,0x7,
@@ -26170,78 +26365,112 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +  0x0,0x7a,
 +  0x0,0x6f,0x0,0x6f,0x0,0x6d,0x0,0x2d,0x0,0x66,0x0,0x69,0x0,0x74,0x0,0x2d,0x0,0x68,0x0,0x65,0x0,0x69,0x0,0x67,0x0,0x68,0x0,0x74,0x0,0x2e,0x0,0x70,
 +  0x0,0x6e,0x0,0x67,
-+
++  
 +};
 +
 +static const unsigned char qt_resource_struct[] = {
 +  // :
 +  0x0,0x0,0x0,0x0,0x0,0x2,0x0,0x0,0x0,0x1,0x0,0x0,0x0,0x1,
++0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,
 +  // :/icons
 +  0x0,0x0,0x0,0x0,0x0,0x2,0x0,0x0,0x0,0x20,0x0,0x0,0x0,0x2,
++0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,
 +  // :/icons/window-close.png
 +  0x0,0x0,0x1,0x6e,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x3b,0x4a,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/edit-copy.png
 +  0x0,0x0,0x0,0x10,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x0,0x0,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/utilities-terminal.png
 +  0x0,0x0,0x0,0xd6,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x1d,0x2d,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/help-faq.png
 +  0x0,0x0,0x1,0x94,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x43,0x73,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/view-split-left-right.png
 +  0x0,0x0,0x2,0xac,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x75,0xe,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/document-open.png
 +  0x0,0x0,0x1,0xd6,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x52,0xf8,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xcf,
 +  // :/icons/zoom-fit-width.png
 +  0x0,0x0,0x2,0x60,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x6a,0x54,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/help-contents.png
 +  0x0,0x0,0x2,0x38,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x64,0x11,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/edit-undo.png
 +  0x0,0x0,0x3,0xfa,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xa8,0xe0,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/folder-open.png
 +  0x0,0x0,0x1,0xb2,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x4e,0xbf,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/tab-new.png
 +  0x0,0x0,0x1,0x38,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x26,0x3a,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/run-build-clean.png
 +  0x0,0x0,0x3,0x34,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x86,0x93,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/vim-qt.png
 +  0x0,0x0,0x1,0x54,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x2a,0x2f,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/document-save-all.png
 +  0x0,0x0,0x1,0x8,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x20,0xef,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/edit-cut.png
 +  0x0,0x0,0x4,0x1a,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xb0,0xc8,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/zoom-fit-height.png
 +  0x0,0x0,0x4,0x94,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xbb,0xa6,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/folder-new.png
 +  0x0,0x0,0x2,0x8a,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x6d,0xfe,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/edit-find-replace.png
 +  0x0,0x0,0x3,0x4,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x7e,0x6e,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/system-run.png
 +  0x0,0x0,0x2,0x16,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x5b,0xe8,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/table.png
 +  0x0,0x0,0x1,0xfe,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x57,0x3c,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/edit-find.png
 +  0x0,0x0,0x0,0x30,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x3,0x60,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/document-save-as.png
 +  0x0,0x0,0x3,0x60,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x90,0x50,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/view-split-top-bottom.png
 +  0x0,0x0,0x4,0x5c,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xba,0x4c,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/go-next.png
 +  0x0,0x0,0x0,0x94,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x11,0xe2,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/go-jump.png
 +  0x0,0x0,0x0,0x50,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xa,0xd,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/edit-paste.png
 +  0x0,0x0,0x3,0xd8,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xa5,0x33,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/document-new.png
 +  0x0,0x0,0x0,0xb0,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x17,0xa7,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xcf,
 +  // :/icons/edit-redo.png
 +  0x0,0x0,0x2,0xe4,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x76,0x9c,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/document-print.png
 +  0x0,0x0,0x3,0xae,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xa0,0x48,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xcf,
 +  // :/icons/go-previous.png
 +  0x0,0x0,0x4,0x38,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xb4,0x48,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +  // :/icons/run-build.png
 +  0x0,0x0,0x3,0x8e,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x98,0xbc,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd1,
 +  // :/icons/document-save.png
 +  0x0,0x0,0x0,0x6c,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0xc,0xef,
++0x0,0x0,0x1,0x58,0x59,0xca,0xb,0xd0,
 +
 +};
 +
@@ -26273,7 +26502,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +int QT_RCC_MANGLE_NAMESPACE(qInitResources)()
 +{
 +    QT_RCC_PREPEND_NAMESPACE(qRegisterResourceData)
-+        (0x01, qt_resource_struct, qt_resource_name, qt_resource_data);
++        (0x2, qt_resource_struct, qt_resource_name, qt_resource_data);
 +    return 1;
 +}
 +
@@ -26281,7 +26510,7 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +int QT_RCC_MANGLE_NAMESPACE(qCleanupResources)()
 +{
 +    QT_RCC_PREPEND_NAMESPACE(qUnregisterResourceData)
-+       (0x01, qt_resource_struct, qt_resource_name, qt_resource_data);
++       (0x2, qt_resource_struct, qt_resource_name, qt_resource_data);
 +    return 1;
 +}
 +
@@ -26293,12 +26522,12 @@ diff -urN vim-src/src/qtresources.cpp vim-qt-src/src/qtresources.cpp
 +}
 diff -urN vim-src/src/qvimshell.moc vim-qt-src/src/qvimshell.moc
 --- vim-src/src/qvimshell.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/qvimshell.moc	2016-08-27 22:36:05.472794759 +0200
-@@ -0,0 +1,203 @@
++++ vim-qt-src/src/qvimshell.moc	2017-07-19 21:35:27.526388261 +0200
+@@ -0,0 +1,206 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'qvimshell.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -26309,12 +26538,14 @@ diff -urN vim-src/src/qvimshell.moc vim-qt-src/src/qvimshell.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'qvimshell.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_QVimShell_t {
 +    QByteArrayData data[24];
 +    char stringdata0[264];
@@ -26455,7 +26686,7 @@ diff -urN vim-src/src/qvimshell.moc vim-qt-src/src/qvimshell.moc
 +
 +const QMetaObject QVimShell::staticMetaObject = {
 +    { &QWidget::staticMetaObject, qt_meta_stringdata_QVimShell.data,
-+      qt_meta_data_QVimShell,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_QVimShell,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -26466,7 +26697,7 @@ diff -urN vim-src/src/qvimshell.moc vim-qt-src/src/qvimshell.moc
 +
 +void *QVimShell::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_QVimShell.stringdata0))
 +        return static_cast<void*>(const_cast< QVimShell*>(this));
 +    if (!strcmp(_clname, "VimWrapper"))
@@ -26494,18 +26725,19 @@ diff -urN vim-src/src/qvimshell.moc vim-qt-src/src/qvimshell.moc
 +// SIGNAL 0
 +void QVimShell::backgroundColorChanged(const QColor & _t1)
 +{
-+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
++    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
 +    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/scrollarea.moc vim-qt-src/src/scrollarea.moc
 --- vim-src/src/scrollarea.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/scrollarea.moc	2016-08-27 22:36:05.473794759 +0200
-@@ -0,0 +1,110 @@
++++ vim-qt-src/src/scrollarea.moc	2017-07-19 21:35:27.534388323 +0200
+@@ -0,0 +1,113 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'scrollarea.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -26516,12 +26748,14 @@ diff -urN vim-src/src/scrollarea.moc vim-qt-src/src/scrollarea.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'scrollarea.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_ScrollArea_t {
 +    QByteArrayData data[3];
 +    char stringdata0[31];
@@ -26578,7 +26812,7 @@ diff -urN vim-src/src/scrollarea.moc vim-qt-src/src/scrollarea.moc
 +
 +const QMetaObject ScrollArea::staticMetaObject = {
 +    { &QWidget::staticMetaObject, qt_meta_stringdata_ScrollArea.data,
-+      qt_meta_data_ScrollArea,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_ScrollArea,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -26589,7 +26823,7 @@ diff -urN vim-src/src/scrollarea.moc vim-qt-src/src/scrollarea.moc
 +
 +void *ScrollArea::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_ScrollArea.stringdata0))
 +        return static_cast<void*>(const_cast< ScrollArea*>(this));
 +    return QWidget::qt_metacast(_clname);
@@ -26611,11 +26845,12 @@ diff -urN vim-src/src/scrollarea.moc vim-qt-src/src/scrollarea.moc
 +    }
 +    return _id;
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/structs.h vim-qt-src/src/structs.h
---- vim-src/src/structs.h	2016-11-12 20:45:55.199272733 +0100
-+++ vim-qt-src/src/structs.h	2016-11-12 20:45:30.031054122 +0100
-@@ -2975,6 +2975,10 @@
+--- vim-src/src/structs.h	2017-07-19 21:32:47.432143328 +0200
++++ vim-qt-src/src/structs.h	2017-07-19 21:35:27.541388378 +0200
+@@ -3032,6 +3032,10 @@
  
  typedef struct VimMenu vimmenu_T;
  
@@ -26626,7 +26861,7 @@ diff -urN vim-src/src/structs.h vim-qt-src/src/structs.h
  struct VimMenu
  {
      int		modes;		    /* Which modes is this menu visible for? */
-@@ -3045,6 +3049,10 @@
+@@ -3102,6 +3106,10 @@
      PtWidget_t	*id;
      PtWidget_t	*submenu_id;
  #endif
@@ -26639,12 +26874,12 @@ diff -urN vim-src/src/structs.h vim-qt-src/src/structs.h
  /* For generating prototypes when FEAT_MENU isn't defined. */
 diff -urN vim-src/src/tabbar.moc vim-qt-src/src/tabbar.moc
 --- vim-src/src/tabbar.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/tabbar.moc	2016-08-27 22:36:05.477794758 +0200
-@@ -0,0 +1,89 @@
++++ vim-qt-src/src/tabbar.moc	2017-07-19 21:35:27.543388393 +0200
+@@ -0,0 +1,90 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'tabbar.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -26655,12 +26890,14 @@ diff -urN vim-src/src/tabbar.moc vim-qt-src/src/tabbar.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'tabbar.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_TabBar_t {
 +    QByteArrayData data[1];
 +    char stringdata0[7];
@@ -26705,7 +26942,7 @@ diff -urN vim-src/src/tabbar.moc vim-qt-src/src/tabbar.moc
 +
 +const QMetaObject TabBar::staticMetaObject = {
 +    { &QTabBar::staticMetaObject, qt_meta_stringdata_TabBar.data,
-+      qt_meta_data_TabBar,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_TabBar,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -26716,7 +26953,7 @@ diff -urN vim-src/src/tabbar.moc vim-qt-src/src/tabbar.moc
 +
 +void *TabBar::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_TabBar.stringdata0))
 +        return static_cast<void*>(const_cast< TabBar*>(this));
 +    return QTabBar::qt_metacast(_clname);
@@ -26725,15 +26962,14 @@ diff -urN vim-src/src/tabbar.moc vim-qt-src/src/tabbar.moc
 +int TabBar::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 +{
 +    _id = QTabBar::qt_metacall(_c, _id, _a);
-+    if (_id < 0)
-+        return _id;
 +    return _id;
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/term.c vim-qt-src/src/term.c
---- vim-src/src/term.c	2016-11-12 19:19:12.325934767 +0100
-+++ vim-qt-src/src/term.c	2016-11-12 19:19:43.707239275 +0100
-@@ -6021,7 +6021,7 @@
+--- vim-src/src/term.c	2017-07-19 21:32:47.439143382 +0200
++++ vim-qt-src/src/term.c	2017-07-19 21:35:27.548388432 +0200
+@@ -6171,7 +6171,7 @@
  }
  #endif
  
@@ -26743,9 +26979,9 @@ diff -urN vim-src/src/term.c vim-qt-src/src/term.c
  static char ksmr_str[20];
  static char ksmd_str[20];
 diff -urN vim-src/src/ui.c vim-qt-src/src/ui.c
---- vim-src/src/ui.c	2016-11-12 19:19:12.335934865 +0100
-+++ vim-qt-src/src/ui.c	2016-11-12 19:19:43.713239333 +0100
-@@ -3122,7 +3122,7 @@
+--- vim-src/src/ui.c	2017-07-19 21:32:47.462143561 +0200
++++ vim-qt-src/src/ui.c	2017-07-19 21:35:27.562388541 +0200
+@@ -3148,7 +3148,7 @@
  
  #if defined(FEAT_GUI_MOTIF) || defined(FEAT_GUI_GTK) || defined(FEAT_GUI_MAC) \
  	|| defined(FEAT_GUI_ATHENA) || defined(FEAT_GUI_MSWIN) \
@@ -26755,8 +26991,8 @@ diff -urN vim-src/src/ui.c vim-qt-src/src/ui.c
   * Translate window coordinates to buffer position without any side effects
   */
 diff -urN vim-src/src/vim.h vim-qt-src/src/vim.h
---- vim-src/src/vim.h	2016-11-12 20:45:55.204272777 +0100
-+++ vim-qt-src/src/vim.h	2016-11-12 20:45:30.054054321 +0100
+--- vim-src/src/vim.h	2017-07-19 21:32:47.465143585 +0200
++++ vim-qt-src/src/vim.h	2017-07-19 21:35:27.567388580 +0200
 @@ -110,6 +110,11 @@
  # define FEAT_GUI_MAC
  #endif
@@ -26769,7 +27005,7 @@ diff -urN vim-src/src/vim.h vim-qt-src/src/vim.h
  #if defined(FEAT_GUI_MOTIF) \
      || defined(FEAT_GUI_GTK) \
      || defined(FEAT_GUI_ATHENA) \
-@@ -2079,6 +2084,10 @@
+@@ -2078,6 +2083,10 @@
      GdkAtom     gtk_sel_atom;	/* PRIMARY/CLIPBOARD selection ID */
  # endif
  
@@ -26792,12 +27028,12 @@ diff -urN vim-src/src/vim.h vim-qt-src/src/vim.h
  # define mch_msg(str)		printf("%s", (str))
 diff -urN vim-src/src/vimaction.moc vim-qt-src/src/vimaction.moc
 --- vim-src/src/vimaction.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/vimaction.moc	2016-08-27 22:36:05.483794758 +0200
-@@ -0,0 +1,111 @@
++++ vim-qt-src/src/vimaction.moc	2017-07-19 21:35:27.568388588 +0200
+@@ -0,0 +1,114 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'vimaction.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -26808,12 +27044,14 @@ diff -urN vim-src/src/vimaction.moc vim-qt-src/src/vimaction.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'vimaction.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_VimAction_t {
 +    QByteArrayData data[3];
 +    char stringdata0[27];
@@ -26871,7 +27109,7 @@ diff -urN vim-src/src/vimaction.moc vim-qt-src/src/vimaction.moc
 +
 +const QMetaObject VimAction::staticMetaObject = {
 +    { &QAction::staticMetaObject, qt_meta_stringdata_VimAction.data,
-+      qt_meta_data_VimAction,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_VimAction,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -26882,7 +27120,7 @@ diff -urN vim-src/src/vimaction.moc vim-qt-src/src/vimaction.moc
 +
 +void *VimAction::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_VimAction.stringdata0))
 +        return static_cast<void*>(const_cast< VimAction*>(this));
 +    return QAction::qt_metacast(_clname);
@@ -26904,15 +27142,16 @@ diff -urN vim-src/src/vimaction.moc vim-qt-src/src/vimaction.moc
 +    }
 +    return _id;
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/vimscrollbar.moc vim-qt-src/src/vimscrollbar.moc
 --- vim-src/src/vimscrollbar.moc	1970-01-01 01:00:00.000000000 +0100
-+++ vim-qt-src/src/vimscrollbar.moc	2016-08-27 22:36:05.483794758 +0200
-@@ -0,0 +1,158 @@
++++ vim-qt-src/src/vimscrollbar.moc	2017-07-19 21:35:27.568388588 +0200
+@@ -0,0 +1,161 @@
 +/****************************************************************************
 +** Meta object code from reading C++ file 'vimscrollbar.h'
 +**
-+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.0)
++** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.1)
 +**
 +** WARNING! All changes made in this file will be lost!
 +*****************************************************************************/
@@ -26923,12 +27162,14 @@ diff -urN vim-src/src/vimscrollbar.moc vim-qt-src/src/vimscrollbar.moc
 +#if !defined(Q_MOC_OUTPUT_REVISION)
 +#error "The header file 'vimscrollbar.h' doesn't include <QObject>."
 +#elif Q_MOC_OUTPUT_REVISION != 67
-+#error "This file was generated using the moc from 5.7.0. It"
++#error "This file was generated using the moc from 5.9.1. It"
 +#error "cannot be used with the include files from this version of Qt."
 +#error "(The moc has changed too much.)"
 +#endif
 +
 +QT_BEGIN_MOC_NAMESPACE
++QT_WARNING_PUSH
++QT_WARNING_DISABLE_DEPRECATED
 +struct qt_meta_stringdata_VimScrollBar_t {
 +    QByteArrayData data[6];
 +    char stringdata0[71];
@@ -27019,7 +27260,7 @@ diff -urN vim-src/src/vimscrollbar.moc vim-qt-src/src/vimscrollbar.moc
 +
 +const QMetaObject VimScrollBar::staticMetaObject = {
 +    { &QScrollBar::staticMetaObject, qt_meta_stringdata_VimScrollBar.data,
-+      qt_meta_data_VimScrollBar,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
++      qt_meta_data_VimScrollBar,  qt_static_metacall, nullptr, nullptr}
 +};
 +
 +
@@ -27030,7 +27271,7 @@ diff -urN vim-src/src/vimscrollbar.moc vim-qt-src/src/vimscrollbar.moc
 +
 +void *VimScrollBar::qt_metacast(const char *_clname)
 +{
-+    if (!_clname) return Q_NULLPTR;
++    if (!_clname) return nullptr;
 +    if (!strcmp(_clname, qt_meta_stringdata_VimScrollBar.stringdata0))
 +        return static_cast<void*>(const_cast< VimScrollBar*>(this));
 +    return QScrollBar::qt_metacast(_clname);
@@ -27056,20 +27297,21 @@ diff -urN vim-src/src/vimscrollbar.moc vim-qt-src/src/vimscrollbar.moc
 +// SIGNAL 0
 +void VimScrollBar::indexChanged(int _t1)
 +{
-+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
++    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
 +    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 +}
 +
 +// SIGNAL 1
 +void VimScrollBar::visibilityChanged(bool _t1)
 +{
-+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
++    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
 +    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 +}
++QT_WARNING_POP
 +QT_END_MOC_NAMESPACE
 diff -urN vim-src/src/winclip.c vim-qt-src/src/winclip.c
---- vim-src/src/winclip.c	2016-11-12 19:19:12.338934894 +0100
-+++ vim-qt-src/src/winclip.c	2016-11-12 19:19:43.716239362 +0100
+--- vim-src/src/winclip.c	2017-07-19 21:32:47.465143585 +0200
++++ vim-qt-src/src/winclip.c	2017-07-19 21:34:45.017057945 +0200
 @@ -181,7 +181,7 @@
  
  #endif /* FEAT_MBYTE */
@@ -27079,7 +27321,7 @@ diff -urN vim-src/src/winclip.c vim-qt-src/src/winclip.c
  /*
   * Clipboard stuff, for cutting and pasting text to other windows.
   */
-@@ -634,7 +634,7 @@
+@@ -632,7 +632,7 @@
  	GlobalFree(hMemVim);
  }
  
