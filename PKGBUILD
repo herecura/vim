@@ -8,13 +8,13 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
 _basever=8.0
-_patchlevel=0743
+_patchlevel=0771
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=825680f5f4ffed5d57fdb283dde5f0ad734605fc
+_gitcommit=1c84493bbeda1d58b70e9b2b7723ce92fb2a49d4
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
@@ -29,17 +29,13 @@ source=(
     'qt-icons.tar.gz'
     'qvim.desktop'
     'qvim.png'
-    '0001-Fix-widget-sizing-on-current-Gtk-3.22-branch.patch'
-    '0002-Further-fix-widget-sizing.patch'
 )
 sha256sums=('SKIP'
             'bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55'
-            'c964d84ebfd7473ab2aace6793a64fe351ee74aff92821c17cf273d01ce64fdd'
-            '3dbbeb00e7fdd3a7dcdd8c01136812d34668343a2440530223b13a34f2ecee9c'
+            '8df07f601e24ea35929a1abff0092581f831635eabdf769d6e8e5571de0f9cef'
+            'a9e029a7d46e9fa65b15ca80a2538d32388be82972003a8fcc71258148e970e6'
             'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
-            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280'
-            '050b0e06fcb20eba219ed86fb568ac1cf2176275af2e34fefc9994f90ec47fe5'
-            'e364c8a3b168e392d09199aed0cf8b43a0cba4c127f80466381b9a9a7ddfe839')
+            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
 
 prepare() {
     # remove old build dirs if exist
@@ -75,12 +71,10 @@ prepare() {
     (cd src && autoconf)
 
     cd ${srcdir}/gvim-build-gtk3
-    patch -p1 -i "$srcdir/0001-Fix-widget-sizing-on-current-Gtk-3.22-branch.patch"
-    patch -p1 -i "$srcdir/0002-Further-fix-widget-sizing.patch"
     (cd src && autoconf)
 
     cd ${srcdir}/gvim-build-qt
-    patch -Np1 -i ${srcdir}/vim-qt-src.patch
+    patch -p1 -i ${srcdir}/vim-qt-src.patch
     (cd src && autoconf)
     (cd src/qt && tar -zxf ${srcdir}/qt-icons.tar.gz)
 }
