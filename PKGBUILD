@@ -6,36 +6,37 @@
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
 pkgbase=vim
-pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
+#pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
+pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-rt' 'vim-gvim-common')
 _basever=8.0
-_patchlevel=1096
+_patchlevel=1102
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=238d43b32859d1b4e6b7072d552289a748cbfee1
+_gitcommit=c71053c61180ed1ad0c98ba6063b769757832932
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3' 'libxt')
-options=()
+#makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'qt5-base' 'ruby' 'gtk3' 'libxt')
+makedepends=('gpm' 'perl' 'python2' 'python' 'lua' 'desktop-file-utils' 'gtk2' 'gettext' 'pkgconfig' 'sed' 'git' 'ruby' 'gtk3' 'libxt')
+#source=(
+    #"$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
+    #'license.txt'
+    #'vim-qt-src.patch'
+    #'qt-icons.tar.gz'
+    #'qvim.desktop'
+    #'qvim.png'
+#)
 source=(
     "$pkgbase::git://github.com/vim/vim#commit=$_gitcommit"
     'license.txt'
-    'vim-qt-src.patch'
-    'qt-icons.tar.gz'
-    'qvim.desktop'
-    'qvim.png'
 )
 sha256sums=('SKIP'
-            'bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55'
-            '8df07f601e24ea35929a1abff0092581f831635eabdf769d6e8e5571de0f9cef'
-            'a9e029a7d46e9fa65b15ca80a2538d32388be82972003a8fcc71258148e970e6'
-            'e61684f12ec23944903e37deb9d902a072ffa71d7c00fedea32c1176d84dc9bd'
-            'c530f9d5dc6beb2cfa9e4e60dc8f74e1a26694d9f090f7ab0d40f8e963cfb280')
+            'bb4744930a0030085d382356e9fdd4f2049b6298147aee2470c7fca7ec82fd55')
 
 prepare() {
     # remove old build dirs if exist
@@ -43,7 +44,7 @@ prepare() {
     [ -d vim-build-tn ] && rm -rf vim-build-tn
     [ -d gvim-build-gtk2 ] && rm -rf gvim-build-gtk2
     [ -d gvim-build-gtk3 ] && rm -rf gvim-build-gtk3
-    [ -d gvim-build-qt ] && rm -rf gvim-build-qt
+    #[ -d gvim-build-qt ] && rm -rf gvim-build-qt
 
     cp -a ${pkgbase} vim-build
     (
@@ -59,7 +60,7 @@ prepare() {
     cp -a vim-build vim-build-tn
     cp -a vim-build gvim-build-gtk2
     cp -a vim-build gvim-build-gtk3
-    cp -a vim-build gvim-build-qt
+    #cp -a vim-build gvim-build-qt
 
     cd ${srcdir}/vim-build-tn
     (cd src && autoconf)
@@ -73,10 +74,10 @@ prepare() {
     cd ${srcdir}/gvim-build-gtk3
     (cd src && autoconf)
 
-    cd ${srcdir}/gvim-build-qt
-    patch -p1 -i ${srcdir}/vim-qt-src.patch
-    (cd src && autoconf)
-    (cd src/qt && tar -zxf ${srcdir}/qt-icons.tar.gz)
+    #cd ${srcdir}/gvim-build-qt
+    #patch -p1 -i ${srcdir}/vim-qt-src.patch
+    #(cd src && autoconf)
+    #(cd src/qt && tar -zxf ${srcdir}/qt-icons.tar.gz)
 }
 
 build() {
@@ -126,18 +127,18 @@ build() {
         #--disable-rubyinterp --enable-luainterp=dynamic
     make
 
-    msg2 'Building vim-gvim-qt'
-    cd ${srcdir}/gvim-build-qt
-    ./configure --prefix=/usr --localstatedir=/var/lib/vim \
-        --mandir=/usr/share/man --with-compiledby=BlackEagle \
-        --with-features=huge --enable-gpm --enable-acl --with-x=yes \
-        --enable-gui=qt --with-qt-qmake=/usr/bin/qmake-qt5 \
-        --enable-multibyte --enable-cscope \
-        --disable-netbeans  --enable-perlinterp=dynamic \
-        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
-        --enable-rubyinterp=dynamic --enable-luainterp=dynamic
-        #--disable-rubyinterp --enable-luainterp=dynamic
-    make
+    #msg2 'Building vim-gvim-qt'
+    #cd ${srcdir}/gvim-build-qt
+    #./configure --prefix=/usr --localstatedir=/var/lib/vim \
+        #--mandir=/usr/share/man --with-compiledby=BlackEagle \
+        #--with-features=huge --enable-gpm --enable-acl --with-x=yes \
+        #--enable-gui=qt --with-qt-qmake=/usr/bin/qmake-qt5 \
+        #--enable-multibyte --enable-cscope \
+        #--disable-netbeans  --enable-perlinterp=dynamic \
+        #--enable-pythoninterp=dynamic --enable-python3interp=dynamic \
+        #--enable-rubyinterp=dynamic --enable-luainterp=dynamic
+        ##--disable-rubyinterp --enable-luainterp=dynamic
+    #make
 }
 
 package_vim-tiny() {
@@ -272,8 +273,10 @@ package_vim-gvim-gtk3() {
     done
     )
 
-    # Runtime provided by runtime package
-    rm -r ${pkgdir}/usr/share/vim
+    ## Runtime provided by runtime package
+    #rm -r ${pkgdir}/usr/share/vim
+    # Move the runtime for later packaging
+    mv ${pkgdir}/usr/share/vim ${srcdir}/runtime-install
 
     # Move the man pages for common packaging
     mv ${pkgdir}/usr/share/man ${srcdir}/gvim-man-install
@@ -287,53 +290,53 @@ package_vim-gvim-gtk3() {
         ${pkgdir}/usr/share/licenses/vim-gvim-gtk3/license.txt
 }
 
-package_vim-gvim-qt() {
-    pkgdesc='Vi Improved, qt gui'
-    depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'qt5-base' 'hicolor-icon-theme' 'shared-mime-info')
-    provides=('gvim')
+#package_vim-gvim-qt() {
+    #pkgdesc='Vi Improved, qt gui'
+    #depends=('vim-cli' 'vim-gvim-common' 'desktop-file-utils' 'qt5-base' 'hicolor-icon-theme' 'shared-mime-info')
+    #provides=('gvim')
 
-    cd ${srcdir}/gvim-build-qt
-    make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
+    #cd ${srcdir}/gvim-build-qt
+    #make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
 
-    # move vim to gvim
-    rm -f ${pkgdir}/usr/bin/gvim
-    mv ${pkgdir}/usr/bin/{vim,qvim}
-    # remove files provided by vim-cli
-    rm -f ${pkgdir}/usr/bin/{vimtutor,xxd,rview,rvim,view,vimdiff,ex}
-    rm -f ${pkgdir}/usr/share/man/*{,/*}/{vim*,vimtutor*,xxd*,rview*,rvim*,view*,vimdiff*,ex*}
-    # move gvimtutor to qvimtutor
-    mv ${pkgdir}/usr/bin/{gvimtutor,qvimtutor}
-    # recreate gvim symlinks
-    (
-    cd ${pkgdir}/usr/bin
-    for link in qview qvimdiff rqview rqvim; do
-        rm -f ${link}
-        ln -s qvim ${link}
-    done
-    )
+    ## move vim to gvim
+    #rm -f ${pkgdir}/usr/bin/gvim
+    #mv ${pkgdir}/usr/bin/{vim,qvim}
+    ## remove files provided by vim-cli
+    #rm -f ${pkgdir}/usr/bin/{vimtutor,xxd,rview,rvim,view,vimdiff,ex}
+    #rm -f ${pkgdir}/usr/share/man/*{,/*}/{vim*,vimtutor*,xxd*,rview*,rvim*,view*,vimdiff*,ex*}
+    ## move gvimtutor to qvimtutor
+    #mv ${pkgdir}/usr/bin/{gvimtutor,qvimtutor}
+    ## recreate gvim symlinks
+    #(
+    #cd ${pkgdir}/usr/bin
+    #for link in qview qvimdiff rqview rqvim; do
+        #rm -f ${link}
+        #ln -s qvim ${link}
+    #done
+    #)
 
-    # Move the runtime for later packaging
-    mv ${pkgdir}/usr/share/vim ${srcdir}/runtime-install
+    ## Move the runtime for later packaging
+    #mv ${pkgdir}/usr/share/vim ${srcdir}/runtime-install
 
-    # remove the man pages for common packaging
-    rm -r ${pkgdir}/usr/share/man
+    ## remove the man pages for common packaging
+    #rm -r ${pkgdir}/usr/share/man
 
-    # remove vim desktop file
-    rm ${pkgdir}/usr/share/applications/vim.desktop
+    ## remove vim desktop file
+    #rm ${pkgdir}/usr/share/applications/vim.desktop
 
-    # no need for gvim references
-    find "$pkgdir" -name "gvim.*" -delete
+    ## no need for gvim references
+    #find "$pkgdir" -name "gvim.*" -delete
 
-    # freedesktop links
-    install -Dm644 ${srcdir}/qvim.desktop \
-        ${pkgdir}/usr/share/applications/qvim.desktop
-    install -Dm644 ${srcdir}/qvim.png ${pkgdir}/usr/share/pixmaps/qvim.png
+    ## freedesktop links
+    #install -Dm644 ${srcdir}/qvim.desktop \
+        #${pkgdir}/usr/share/applications/qvim.desktop
+    #install -Dm644 ${srcdir}/qvim.png ${pkgdir}/usr/share/pixmaps/qvim.png
 
-    # license
-    install -dm755 ${pkgdir}/usr/share/licenses/vim-gvim-qt
-    install -Dm644 ${srcdir}/license.txt \
-        ${pkgdir}/usr/share/licenses/vim-gvim-x11/license.txt
-}
+    ## license
+    #install -dm755 ${pkgdir}/usr/share/licenses/vim-gvim-qt
+    #install -Dm644 ${srcdir}/license.txt \
+        #${pkgdir}/usr/share/licenses/vim-gvim-x11/license.txt
+#}
 
 package_vim-rt() {
     pkgdesc='Runtime for vim and gvim'
