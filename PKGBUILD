@@ -16,7 +16,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=f3dc235576da7394fbe743aba732f43289f32c24
-pkgrel=2
+pkgrel=3
 _versiondir=vim${_basever/./}
 arch=('x86_64')
 license=('custom:vim')
@@ -188,7 +188,7 @@ package_vim-cli-nox() {
     conflicts=('vi' 'vim' 'vim-cli')
     provides=('vim' 'xxd' 'vi')
 
-    cd ${srcdir}/vim-build
+    cd ${srcdir}/vim-build-nox
     make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
 
     # remove evim manpages
