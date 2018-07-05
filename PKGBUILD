@@ -7,7 +7,7 @@
 
 pkgbase=vim
 #pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-gvim-qt' 'vim-rt' 'vim-gvim-common')
-pkgname=('vim-tiny' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-rt' 'vim-gvim-common')
+pkgname=('vim-tiny' 'vim-cli-nox' 'vim-cli' 'vim-gvim-gtk2' 'vim-gvim-gtk3' 'vim-rt' 'vim-gvim-common')
 _basever=8.1
 _patchlevel=0152
 if [ "$_patchlevel" = "0" ]; then
@@ -16,7 +16,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=f3dc235576da7394fbe743aba732f43289f32c24
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('x86_64')
 license=('custom:vim')
@@ -58,6 +58,7 @@ prepare() {
         vim-build/src/feature.h
 
     cp -a vim-build vim-build-tn
+    cp -a vim-build vim-build-nox
     cp -a vim-build gvim-build-gtk2
     cp -a vim-build gvim-build-gtk3
     #cp -a vim-build gvim-build-qt
@@ -89,6 +90,18 @@ build() {
         --disable-gui --enable-multibyte --disable-cscope \
         --disable-netbeans --disable-perlinterp --disable-pythoninterp \
         --disable-rubyinterp --enable-luainterp=no
+    make
+
+    msg2 'Building vim-cli-nox'
+    cd ${srcdir}/vim-build-nox
+    ./configure --prefix=/usr --localstatedir=/var/lib/vim \
+        --mandir=/usr/share/man --with-compiledby=BlackEagle \
+        --with-features=huge --enable-gpm --enable-acl --with-x=no \
+        --disable-gui --enable-multibyte --enable-cscope \
+        --disable-netbeans --enable-perlinterp=dynamic \
+        --enable-pythoninterp=dynamic --enable-python3interp=dynamic \
+        --enable-rubyinterp=dynamic --enable-luainterp=dynamic
+        #--disable-rubyinterp --enable-luainterp=dynamic
     make
 
     msg2 'Building vim-cli'
@@ -162,6 +175,40 @@ package_vim-tiny() {
         ${pkgdir}/usr/share/licenses/vim-tiny/license.txt
 }
 
+package_vim-cli-nox() {
+    pkgdesc='Vi Improved, cli'
+    depends=("vim-rt=${pkgver}-${pkgrel}" 'gpm')
+    optdepends=(
+        'perl: vim perl binding'
+        'python2: vim python2 binding'
+        'python: vim python3 binding'
+        'lua: vim lua binding'
+        'ruby: vim ruby binding'
+    )
+    conflicts=('vi' 'vim' 'vim-cli')
+    provides=('vim' 'xxd' 'vi')
+
+    cd ${srcdir}/vim-build
+    make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
+
+    # remove evim manpages
+    rm -f ${pkgdir}/usr/share/man/*{,/*}/evim*
+
+    # Runtime provided by runtime package
+    rm -r ${pkgdir}/usr/share/vim
+
+    # vi symlink
+    ln -sf /usr/bin/vim ${pkgdir}/usr/bin/vi
+
+    # no need for gvim references
+    find "$pkgdir" -name "gvim.*" -delete
+
+    # license
+    install -dm755 ${pkgdir}/usr/share/licenses/vim-cli-nox
+    install -Dm644 ${srcdir}/license.txt \
+        ${pkgdir}/usr/share/licenses/vim-cli-nox/license.txt
+}
+
 package_vim-cli() {
     pkgdesc='Vi Improved, cli'
     depends=("vim-rt=${pkgver}-${pkgrel}" 'gpm' 'libxt')
@@ -172,8 +219,8 @@ package_vim-cli() {
         'lua: vim lua binding'
         'ruby: vim ruby binding'
     )
-    conflicts=('vi' 'vim')
-    provides=('vim' 'xxd')
+    conflicts=('vi' 'vim' 'vim-cli-nox')
+    provides=('vim' 'xxd' 'vi')
 
     cd ${srcdir}/vim-build
     make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
