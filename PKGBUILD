@@ -15,7 +15,7 @@ if [ "$_patchlevel" = "0" ]; then
 else
     pkgver=${_basever}.${_patchlevel}
 fi
-_gitcommit=2f6a346a4cd2d5bdd6dc9b3209ebce7b6340221d 2f6a346a4cd2d5bdd6dc9b3209ebce7b6340221d
+_gitcommit=2f6a346a4cd2d5bdd6dc9b3209ebce7b6340221d
 pkgrel=1
 _versiondir=vim${_basever/./}
 arch=('x86_64')
