@@ -15,7 +15,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=d002e411c60a231b7c136a84422b3d9bf7b8b4df
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('x86_64')
 license=('custom:vim')
