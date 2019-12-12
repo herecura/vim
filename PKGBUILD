@@ -8,7 +8,7 @@
 pkgbase=vim
 pkgname=('vim-tiny' 'vim-cli-nox' 'vim-cli' 'vim-rt')
 _basever=8.2
-_patchlevel=0
+_patchlevel=0000
 if [ "$_patchlevel" = "0" ]; then
     pkgver=${_basever}
 else
