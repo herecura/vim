@@ -165,9 +165,7 @@ package_vim-cli() {
     rm -f ${pkgdir}/usr/share/man/*{,/*}/evim*
 
     ## Runtime provided by runtime package
-    #rm -r ${pkgdir}/usr/share/vim
-    # Move the runtime for later packaging
-    mv ${pkgdir}/usr/share/vim ${srcdir}/runtime-install
+    rm -r ${pkgdir}/usr/share/vim
 
     # vi symlink
     ln -sf /usr/bin/vim ${pkgdir}/usr/bin/vi
@@ -190,9 +188,11 @@ package_vim-rt() {
         'gawk: tools'
     )
 
-    # Install the runtime split from gvim
-    install -dm755 ${pkgdir}/usr/share
-    mv ${srcdir}/runtime-install ${pkgdir}/usr/share/vim
+    cd ${srcdir}/vim-build
+    make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
+
+    # remove non runtime files
+    rm -r "${pkgdir}"/usr/share/man/ "${pkgdir}"/usr/bin/
 
     # fix FS#22661 add rgb.txt
     install -Dm644 ${srcdir}/vim/runtime/rgb.txt \
