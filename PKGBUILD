@@ -15,7 +15,7 @@ else
     pkgver=${_basever}.${_patchlevel}
 fi
 _gitcommit=fbcdf671f08cd2c7e60f35574231df0421112d99
-pkgrel=1
+pkgrel=2
 _versiondir=vim${_basever/./}
 arch=('x86_64')
 license=('custom:vim')
@@ -192,7 +192,10 @@ package_vim-rt() {
     make -j1 VIMRCLOC=/etc DESTDIR=${pkgdir} install
 
     # remove non runtime files
-    rm -r "${pkgdir}"/usr/share/man/ "${pkgdir}"/usr/bin/
+    rm -r "${pkgdir}"/usr/share/applications/ \
+        "${pkgdir}"/usr/share/man/ \
+        "${pkgdir}"/usr/share/icons/ \
+        "${pkgdir}"/usr/bin/
 
     # fix FS#22661 add rgb.txt
     install -Dm644 ${srcdir}/vim/runtime/rgb.txt \
